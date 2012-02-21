@@ -1,0 +1,61 @@
+/*
+ *
+ * Structure & Layout
+ *
+ */
+html, body, #wrapper {
+  height: 100%;
+}
+#wrapper {
+  position: relative;
+}
+#header {
+  height: 5em;
+  padding: 0 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 300;
+}
+#content {
+  position: absolute;
+  top: 5em;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+}
+#content-wrapper {
+  padding: 2em;
+}
+#footer {
+  color: #fff;
+  position: absolute;
+  bottom: 2.5em;
+  left: 3em;
+  z-index: 200;
+}
+
+
+/* The Map */
+#map-container {
+  position : absolute;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+#map {
+  position : absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+
+/* Crosshair for touchscreens */
+#crosshair {
+  position : absolute;
+  z-index  : 10000;
+}

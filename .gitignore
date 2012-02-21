@@ -1,0 +1,32 @@
+# user-specific
+.bundle
+db/*.sqlite3
+log/*.log
+
+# tmp
+tmp/
+.sass-cache/
+
+# stored data
+public/system/*
+
+# things with example files
+config/database.yml
+config/facebook.yml
+config/deploy/
+
+# cover_me generated
+coverage
+coverage.data
+
+# junk
+.DS_Store
+
+# backup files and other cruft
+*~
+*#
+.#*
+*.orig
+*.rej
+*.swp
+*.bak
