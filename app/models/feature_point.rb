@@ -38,6 +38,14 @@ class FeaturePoint < ActiveRecord::Base
       corners[0][0], corners[0][1], corners[1][0], corners[0][1], corners[1][0], corners[1][1], corners[0][0], corners[1][1], corners[0][0], corners[0][1]]
     )
   end
+  
+  def journey
+    t = Journey.arel_table
+
+    Journey.where(
+      t[:start_id].eq(id).or(t[:end_id].eq(id))
+    ).first
+  end
 
   def latitude
     return the_geom.y if the_geom

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130213913) do
+ActiveRecord::Schema.define(:version => 20120221205248) do
 
   create_table "activity_items", :force => true do |t|
     t.string   "subject_type"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20120130213913) do
     t.string   "feature_type"
     t.integer  "feature_id"
     t.integer  "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "journeys", :force => true do |t|
+    t.integer  "start_id"
+    t.integer  "end_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

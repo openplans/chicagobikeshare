@@ -91,6 +91,13 @@ Fixjour :verify => false do
       :data => File.new(Rails.root + 'spec/fixtures/nybb_10cav.zip')
     })
   end
+  
+  define_builder(Journey) do |klass, overrides|
+    klass.new({
+      :start => new_feature_point, 
+      :end => new_feature_point
+    })
+  end
 end
 
 # Fixjour.verify!

@@ -115,6 +115,42 @@ describe FeaturePoint do
       @point = create_feature_point
     end
     
+    context "which starts a journey" do
+      attr_reader :journey
+      
+      before do
+        @journey = create_journey :start => point
+      end
+      
+      it "has a journey" do
+        point.journey.should == journey
+      end
+    end
+    
+    context "which ends a journey" do
+      attr_reader :journey
+      
+      before do
+        @journey = create_journey :end => point
+      end
+      
+      it "has a journey" do
+        point.journey.should == journey
+      end
+    end
+    
+    context "which is part of no journey" do
+      attr_reader :journey
+      
+      before do
+        @journey = create_journey
+      end
+      
+      it "has a journey" do
+        point.journey.should be_nil
+      end
+    end
+    
     context "without supports" do
       before do
         point.votes.should_not be_present
