@@ -1,2 +1,1 @@
-sudo "/engineyard/bin/dj chicagobikeshare stop production"
-sudo "/engineyard/bin/dj chicagobikeshare start production"
+sudo "monit -g dj_chicagobikeshare restart all"
