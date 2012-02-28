@@ -20,7 +20,7 @@ class Region < ActiveRecord::Base
   end
   
   def name
-    metadata[shapefile.name_field]
+    metadata[shapefile.name_field].try(:titlecase)
   end
   
   def default?
