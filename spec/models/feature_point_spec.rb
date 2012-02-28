@@ -98,11 +98,11 @@ describe FeaturePoint do
       
       before do
         @location_type = create_location_type
-        create_feature_location_type :location_type => location_type, :feature => point
+        location_type.feature_points << point
       end
       
       it "has_many" do
-        point.location_type.should == location_type
+        point.location_types.should include(location_type)
       end
     end
   end

@@ -13,13 +13,17 @@
     <div>
       <%= form.text_field :name, :placeholder => t("feature.form.title_label") %>
     </div>
-    <% if LocationType.any? %>
-      <div>
-        <%= form.fields_for :feature_location_type, @feature_point.build_feature_location_type do |fields| %>
-          <%= fields.collection_select :location_type_id, LocationType.all, :id, :name, :include_blank => "Type" %>
-        <% end %>
-      </div>
-    <% end %>
+    
+    <div class="location_types">
+      <% LocationType.all.each do |location_type| -%>
+        <div>
+          <%= label_tag do %>
+            <%= check_box_tag 'feature_point[location_type_ids][]', location_type.id %>
+            <%= location_type.name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <div>
       <%= form.text_area :description, :placeholder => t("feature.form.description_label"), :cols => 1, :rows => 4 %>
     </div>

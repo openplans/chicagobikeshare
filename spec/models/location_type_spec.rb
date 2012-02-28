@@ -9,15 +9,15 @@ describe LocationType do
     end
     
     context "features" do
-      attr_reader :feature
+      attr_reader :feature_point
       
       before do
-        @feature = create_feature_point
-        create_feature_location_type :location_type => location_type, :feature => feature
+        @feature_point = create_feature_point
+        feature_point.location_types << location_type
       end
       
       it "has_many" do
-        location_type.features.should include(feature)
+        location_type.feature_points.should include(feature_point)
       end
     end
   end

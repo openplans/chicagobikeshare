@@ -18,16 +18,14 @@ class FeaturePoint < ActiveRecord::Base
   has_many :regions, :through => :feature_regions
   has_many :activity_items, :as => :subject, :inverse_of => :subject, :dependent => :destroy
   has_many :children_activity_items, :as => :subject_parent, :class_name => "ActivityItem", :dependent => :destroy
-  has_one :feature_location_type, :as => :feature, :dependent => :destroy, :inverse_of => :feature
-  has_one :location_type, :through => :feature_location_type
+  has_many :feature_points_location_types
+  has_many :location_types, :through => :feature_points_location_types
   belongs_to :user
 
   before_create :find_regions
   after_create :add_to_regions
   after_initialize :set_defaults
   after_update :maybe_remove_activity_items
-
-  accepts_nested_attributes_for :feature_location_type
 
   validates :the_geom,  :presence => true
   validates_with InRegionValidator, :if => lambda { Region.any? }
@@ -45,6 +43,12 @@ class FeaturePoint < ActiveRecord::Base
     Journey.where(
       t[:start_id].eq(id).or(t[:end_id].eq(id))
     ).first
+  end
+
+  def location_type_ids=(ids_arr)
+    ids_arr.each do |id|
+      feature_points_location_types.new :location_type_id => id
+    end
   end
 
   def latitude
@@ -92,10 +96,6 @@ class FeaturePoint < ActiveRecord::Base
         :description    => description
       }
     }
-  end
-
-  def meta_data
-    [location_type.try(:name), regions.map(&:display_name).join(", ")].compact
   end
 
   def find_regions

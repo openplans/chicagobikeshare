@@ -28,12 +28,16 @@
 
   <div class="meta weak">
     <ul>
-      <% feature_point.meta_data.each_with_index do |datum, index| %>
-      <li<%= " class=first" if index == 0 %>>
-      <%= datum %>
+      <li class="first">
+        <%= feature_point.regions.map(&:display_name).join(", ") %>
       </li>
-      <% end %>
     </ul>
+  </div>
+  
+  <div class="location_types">
+    <% for location_type in feature_point.location_types %>
+      <span><%= location_type.name %></span>
+    <% end %>
   </div>
 
   <div class="discussion">

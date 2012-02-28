@@ -8,6 +8,7 @@ class FeaturePointsController < ApplicationController
       format.html
       format.json do
         @feature_points = FeaturePoint.visible.where [ "id > ?", params[:after].to_i ]
+        Rails.logger.debug "FPPPPPPP #{@feature_points.inspect}"
         render :json => @feature_points.map(&:as_json)
       end
     end

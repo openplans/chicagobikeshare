@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221205248) do
+ActiveRecord::Schema.define(:version => 20120227190042) do
 
   create_table "activity_items", :force => true do |t|
     t.string   "subject_type"
@@ -71,14 +71,6 @@ ActiveRecord::Schema.define(:version => 20120221205248) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "feature_location_types", :force => true do |t|
-    t.integer  "feature_id"
-    t.integer  "location_type_id"
-    t.string   "feature_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "feature_points", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -91,6 +83,13 @@ ActiveRecord::Schema.define(:version => 20120221205248) do
   end
 
   add_index "feature_points", ["the_geom"], :name => "index_feature_points_on_the_geom"
+
+  create_table "feature_points_location_types", :id => false, :force => true do |t|
+    t.integer "feature_point_id"
+    t.integer "location_type_id"
+  end
+
+  add_index "feature_points_location_types", ["feature_point_id", "location_type_id"], :name => "points_types"
 
   create_table "feature_regions", :force => true do |t|
     t.string   "feature_type"

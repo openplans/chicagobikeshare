@@ -1,9 +1,6 @@
 class LocationType < ActiveRecord::Base
   validates :name, :presence => true
   
-  has_many :feature_location_types, :dependent => :destroy
-  
-  def features
-    feature_location_types.map &:feature
-  end
+  has_many :feature_points_location_types
+  has_many :feature_points, :through => :feature_points_location_types
 end

@@ -62,13 +62,6 @@ Fixjour :verify => false do
     })
   end
   
-  define_builder(FeatureLocationType) do |klass, overrides|
-    klass.new({
-      :feature => new_feature_point,
-      :location_type => new_location_type
-    })
-  end
-  
   define_builder(Page) do |klass, overrides|
     klass.new({
       :author => create_admin,
