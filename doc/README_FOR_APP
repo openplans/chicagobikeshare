@@ -1,6 +1,7 @@
 From 0 to Shareabouts in about an hour
 ======================================
-Shareabouts requires ruby, postgis, ogr2ogr, and a facebook API key.
+Shareabouts requires ruby, postgis, ogr2ogr, and facebook and twitter 
+API keys.
 
 Ruby
 ----
@@ -77,14 +78,15 @@ GRANT ALL ON spatial_ref_sys TO PUBLIC;
 -- problems.
 VACUUM FREEZE;
 
-Facebook
+Authentication
 --------
-Shareabouts uses facebook for authentication, via the omniauth gem. You'll need
-to create an app on https://developers.facebook.com/apps in order to get an API
-key and App Secret.
+Shareabouts uses facebook and/or twitter for authentication, via the omniauth gem. 
+You'll need to generate app keys and secrets at 
+https://developers.facebook.com/apps and https://dev.twitter.com/apps.
 
 Once you have those keys, copy config/facebook.yml.example to config/facebook.yml, 
-and fill in your keys for each environment.
+and copy config/twitter.yml.example to config/twitter.yml. Then, fill in your keys 
+for each environment for each service.
 
 
 Gems
@@ -115,6 +117,10 @@ $ rake db:migrate
 
 if rake db:migrate fails, try
 $ rake db:schema:load
+
+Finally, seed the database with an initial admin user and other data:
+
+$ rake db:seed
 
 Testing
 --------
@@ -149,12 +155,22 @@ left nav, and click "Edit" on the line of the generated admin. Enter the email
 address, new password, and password again (under Password Confirmation) and 
 click Save.
 
+Admin Interface
+---------------
+
+Shareabouts uses the rails_admin engine for some management tasks.
+
+To visit the admin UI, browse to /admin/ and use the admin user
+created by 'rake db:seed' as described above.
+
+
 Starting the Development Server
 --------------------------------
 
 In the root of your shareabouts checkout, run this:
 
 $ rails server
+
 
 Server setup (for production)
 ------------------------------
@@ -170,7 +186,8 @@ Deploying (production)
 
 (You can skip this if you're only doing local development or if you're 
 deploying to Heroku or another cloud platform.
-For deployment to dotcloud.com, see doc/dotcloud_deployment)
+For deployment to dotcloud.com, see doc/dotcloud_deployment. For EngineYard,
+see doc/engineyard_setup.)
 
 We deploy with capistrano. Our deploy script is config/deploy.rb. We deploy to 
 multiple environments, so we have a production.rb and staging.rb deploy script
@@ -181,8 +198,8 @@ To create the initial capistrano setup run:
 $ cap deploy:setup
 
 Then, on the deployment server, go into the 'shared' directory under
-your deploy_to directory. Put your customized config/database.yml and
-config/facebook.yml into shared, preserving the config
+your deploy_to directory. Put your customized config/database.yml,
+config/facebook.yml and config/twitter.yml into shared, preserving the config
 directory structure.
 
 On your local machine you should be able to run
@@ -199,6 +216,7 @@ Visit http://_yourserver_/admin, log in with the default credentials, click
 "Admins" in the left nav, and click "Edit" on the line of the generated admin.
 Enter the email address, new password, and password again (under Password 
 Confirmation) and click Save. 
+
 
 Feedback
 --------
