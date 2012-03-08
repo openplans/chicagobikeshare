@@ -75,6 +75,13 @@ $.widget("ui.shareabout", (function() {
         self.hint.remove();
       } );
 
+      // Get then add the inverted feature polygons
+      if (self.options.polygonsUrl) {
+        this._getFeaturePolygons(self.options.polygonsUrl, function(data){
+          self._addInvertedFeaturePolygons(data);
+        });
+      }
+
       // Update featurePointsCache and populate the map
       this._fetch(function(){
         self.refreshMapFeatures(self.options.callbacks.onload);
@@ -251,6 +258,62 @@ $.widget("ui.shareabout", (function() {
     /*
      * Private
      */
+
+    // Fetch the polygon data from options.polygonsUrl
+    _getFeaturePolygons: function(url, success, error) {
+      var self = this;
+
+      // Get the feature polygon from the server
+      $.ajax({
+        url: self.options.polygonsUrl,
+        dataType: 'json',
+        success: function(data){
+          if (success) {success(data);}
+        },
+        error: function() {
+          if (error) {error();}
+        }
+      });
+    },
+
+    // Add feature polygons to the map
+    _addInvertedFeaturePolygons: function(polygonList) {
+      // Make the whole world as an overlay
+      var worldLatLngs = [
+            new L.LatLng( 85, -179),
+            new L.LatLng(-85, -179),
+            new L.LatLng(-85,  179),
+            new L.LatLng( 85,  179),
+            new L.LatLng( 85, -179)
+          ],
+          i,
+          invertedLayer,
+          areaLatLngs,
+          invertedPoly;
+
+      if (polygonList.length > 0) {
+        // Convert the geojson to array of Leaflet LatLngs
+        areaLatLngs = L.GeoJSON.coordsToLatLngs(polygonList[0].latlngs, 2);
+        invertedPoly = [worldLatLngs];
+
+        for (i=0; i<areaLatLngs.length; i++) {
+          // Punch holes in the world
+          invertedPoly = invertedPoly.concat(areaLatLngs[i]);
+        }
+
+        // Make the layer, black, half transparent
+        invertedLayer = new L.Polygon(invertedPoly, {
+          color: '#000',
+          weight: 1,
+          fillColor: '#000',
+          fillOpacity: 0.5,
+          clickable: false
+        });
+
+        // Add to the map
+        map.addLayer(invertedLayer);
+      }
+     },
 
     // Fetches feature locations from the server and populates
     // the cache. This function will always check the cache
