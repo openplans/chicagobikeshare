@@ -9,7 +9,7 @@
 
 /* Forms, Inputs, & Buttons */
 label { 
-  color: #888;
+  color: #737373;
   font-size: 0.8em;
   display: block;
 }
@@ -30,9 +30,9 @@ button {
   line-height: 2.25em;
   height: 2.25em;
   text-shadow: 1px -1px 0 #0066aa;
-     -moz-box-shadow: -4px 4px 0 rgba(0, 102, 170, 0.75);
-  -webkit-box-shadow: -4px 4px 0 rgba(0, 102, 170, 0.75);
-          box-shadow: -4px 4px 0 rgba(0, 102, 170, 0.75);
+     -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 input[type=button]:hover,
 input[type=submit]:hover,
@@ -44,9 +44,9 @@ input[type=submit]:active,
 button:active {
   background-color: #00AEF2;
   color: #fff;
-     -moz-box-shadow: -3px 3px 0 rgba(0, 102, 170, 0.75);
-  -webkit-box-shadow: -3px 3px 0 rgba(0, 102, 170, 0.75);
-          box-shadow: -3px 3px 0 rgba(0, 102, 170, 0.75);
+     -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 #locate_feature,
 #finalize_feature {
@@ -356,6 +356,9 @@ table.regions {
 }
 
 /* Feature Popup - Content */
+.feature h2 {
+  font-size: 1.5em
+}
 .feature .name {
   margin: 0 0 0.25em;
 }
@@ -375,21 +378,67 @@ table.regions {
 .feature textarea {
   width : 90%;
 }
+.feature fieldset.auth {
+  margin: 0.5em 0 1em;
+}
+.feature fieldset.auth div {
+  margin-bottom: 0;
+}
+.feature.new p {
+  margin-bottom: 0;
+}
+.feature .sign-in-text {
+  font-size: 0.7em;
+  color: #444;
+  line-height: 2.5em;
+}
+.feature .sign-in {
+  width: 17px;
+  height: 17px;
+  margin-top: 0.5em;
+}
 .feature div {
   margin-bottom: 1em;
 }
-.feature.show .meta ul {
-  margin : 0;
+.feature .location_types {
+  
 }
-.feature.show .meta ul li {
-  list-style: none;
-  display: inline;
+.feature .location_types input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
 }
-.feature.show .meta ul li:before {
-	content: "|";
+.feature .location_types label.checkbox-button { 
+  display: inline-block;
+  cursor: pointer;
+  background: #EAEAEA url(location-type-unchecked-gradient.png) center center repeat-x scroll;  
+  padding: 0.5em 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.6em;
+  color: #999;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
-.feature.show .meta ul li.first:before {
-	content: " ";
+.feature .location_types label.checkbox-button.checked {
+  color: #444;
+  background: #D2E9F5 url(location-type-gradient.png) center center repeat-x scroll;
+}
+
+.feature.new input[type="submit"] {
+  color: #fff;
+  font-weight: normal;
+  line-height: 1em;
+  font-size: 1em;
+  border: 1px solid #2A76B5;
+  background: #0AF url(button-gradient.png) center center repeat-x scroll;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 
 /* Discussion */

@@ -11,7 +11,7 @@
 
   <%= form_for @feature_point do |form| %>
     <% if !current_user %>
-    <fieldset>
+    <fieldset class="auth">
       <div>
         <%= form.label :submitter_name, t("feature.form.submitter_name_label") %>
         <%= form.text_field :submitter_name, :placeholder => t("feature.form.submitter_name_label") %>
@@ -23,18 +23,13 @@
     </fieldset>
     <% end %>
     <fieldset>
-      <div>
-        <%= form.label :name, t("feature.form.title_label") %>
-        <%= form.text_field :name, :placeholder => t("feature.form.title_label") %>
-      </div>
       <div class="location_types">
+        <label>I'd use this location for...</label>
         <% LocationType.all.each do |location_type| -%>
-          <div>
-            <%= label_tag do %>
+            <%= label_tag "", :class => "checkbox-button" do %>
               <%= check_box_tag 'feature_point[location_type_ids][]', location_type.id %>
               <%= location_type.name %>
             <% end %>
-          </div>
         <% end %>
       </div>
       <div>

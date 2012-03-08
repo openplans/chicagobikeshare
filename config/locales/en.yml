@@ -20,9 +20,9 @@ en:
       point_added: 'Thank you! Your point was added to the map. Please, share it with your friends.'
       invalid: 'There are some errors with your point.'
     form:
-      header: 'Tell us more...'
+      header: 'Suggest a location...'
       title_label: Location Name
-      description_label: Description...
+      description_label: Comment...
       submitter_name_label: 'Your Name'
       submit: 'Submit Location'
     purpose: 'This location is a %{type}.'

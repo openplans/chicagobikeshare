@@ -195,4 +195,9 @@ $(function() {
   $(".reply-link").live("click", function(e) {
     $("#reply").removeClass("hide");
   });
+  
+  // Label checkbox toggle
+  $("label.checkbox-button input:checkbox").live("click", function(e){
+    $(this).closest("label").toggleClass("checked");
+  });
 });
