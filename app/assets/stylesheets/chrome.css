@@ -148,7 +148,7 @@ table.regions {
   font-size: 0.9em;
 }
 #access .account span {
-  padding-left: 1em;
+  padding-left: 1.2em;
   font-size: 1.8em;
   font-weight: bold;
 }
@@ -156,11 +156,11 @@ table.regions {
   margin-right: 1em;
 }
 #access .account .my-points span {
-  background: transparent url('feature-point.png') no-repeat scroll center left;
+  background: transparent url('marker-bike.png') no-repeat scroll center left;
   color: lightblue;
 }
 #access .account .my-supports span {
-  background: transparent url('support-heart.png') no-repeat scroll center left;
+  background: transparent url('thumbs-up.png') no-repeat scroll center left;
   color: pink;
 }
 #access .menu a {
