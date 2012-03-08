@@ -26,7 +26,8 @@ en:
       submitter_name_label: 'Your Name'
       submit: 'Submit Location'
     purpose: 'This location is a %{type}.'
-    submitted_by: 'added this point %{in_region}'
+    submitted_by: 'suggested a station %{in_region}'
+    when_date: 'on %{date}'
     when: 'on %{date} at %{time}'
     comment: 
       label: comment

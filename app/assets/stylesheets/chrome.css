@@ -369,6 +369,8 @@ table.regions {
 }
 .feature .description {
   clear: both;
+  font-size: 0.8em;
+  line-height: 1.3em;
 }
 .feature-submitter {
 }
@@ -400,8 +402,8 @@ table.regions {
 .feature div {
   margin-bottom: 1em;
 }
-.feature .location_types {
-  
+.feature .feature-header {
+  line-height: 1em;
 }
 .feature .location_types input[type=checkbox] {
    position: absolute;
@@ -428,7 +430,12 @@ table.regions {
   background: #D2E9F5 url(location-type-gradient.png) center center repeat-x scroll;
 }
 
-.feature.new input[type="submit"] {
+.feature.show .location_types label.checkbox-button.checked {
+  cursor: inherit;
+}
+
+.feature.new input[type="submit"],
+#reply input[type="submit"] {
   color: #fff;
   font-weight: normal;
   line-height: 1em;
@@ -445,7 +452,6 @@ table.regions {
 .discussion {
   position: relative;
   margin-top: 2em;
-  padding-bottom: 2em;
 }
 .discussion-header {
   margin: 1em 0;
@@ -506,8 +512,10 @@ a.reply-link:hover {
 #reply div { 
   margin: 0 0 0.5em;
 }
+#reply .sign-in-text {
+  float: none;
+}
 #reply input[type=submit] {
-  font-size: 1.1em;
   margin-top: 1em;
 }
 
@@ -564,13 +572,13 @@ a.reply-link:hover {
   background-color: #e4e4e4;
   color: #444;
   border: 1px solid #a8a8a8;
-  font-weight: normal;
+  font-weight: bold;
   font-size: auto;
-  font-size: 1em;
-  height: 2.5em;
+  font-size: 0.8em;
+  height: 3em;
   line-height: 2.5em;
   margin: 15px;
-  padding: 0 1.2em;
+  padding: 0.3em 1.2em;
   text-align: center;
   white-space: nowrap;
   float: left;
@@ -579,17 +587,19 @@ a.reply-link:hover {
   -webkit-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
           box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
 }
+.social form.vote button[type=submit].supported {
+  background-color : #C1DFF1;
+}
 .social form.vote button[type=submit] span {
   font-weight: bold;
   color: #f61359;
+  padding    : 6px 0 6px 25px;
 }
 .social form.vote button[type=submit] span {
-  background : transparent url(support-heart-empty.png) no-repeat scroll top left;
-  padding    : 0 0 0 18px;
+  background : transparent url(thumbs-up-gray.png) no-repeat scroll top left;
 }
 .social form.vote button[type=submit] span.supported {
-  background : transparent url(support-heart.png) no-repeat scroll top left;
-  padding    : 0 0 0 18px;
+  background : transparent url(thumbs-up.png) no-repeat scroll top left;
 }
 
 .social .sharing {

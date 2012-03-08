@@ -1,6 +1,5 @@
 <%= form_for Comment.new(:commentable_id => commentable.id, :commentable_type => commentable.class.to_s), 
   :url => commentable_comments_path(commentable), :html => { "data-behavior" => "load_result_in_popup" } do |form| %>
-  <%= render "shared/signed_in.html" if current_user %>
   <div>
     <%= form.label :comment %>
     <%= form.text_area :comment, :rows => 4 %>
@@ -9,7 +8,13 @@
     <div>
       <%= form.label :submitter_name, t("feature.form.submitter_name_label") %>
       <%= form.text_field :submitter_name, :placeholder => t("feature.form.submitter_name_label") %>
+      <div class="clearfix">
+        <span class="sign-in-text">Or <%= t("auth.sign_in") %></span>
+        <%= render "shared/sign_in" %>
+      </div>
     </div>
+  <% else %>
+    <div class="sign-in-text clearfix"><%= render "shared/signed_in.html" %></div>
   <% end %>
   <%= form.submit t("feature.comment.action") %>
 <% end %>
