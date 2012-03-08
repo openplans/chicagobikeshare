@@ -600,17 +600,27 @@ a.reply-link:hover {
   right    : 0;
   top      : 0;
   z-index  : 10000;
-  background-color : #666666;
   overflow : auto;
+  background-color: #CDE4F1;
+  text-align: center;
+}
+
+#ticker #intro {
+  padding: 1em 0.2em 0;
+}
+
+#ticker #intro p {
+  margin-top: 1em;
 }
 
 #ticker ul {
-  padding-top: 4px;
+  background-color: #E4E6E6;
   margin: 0;
+  text-align: left;
 }
 
 #ticker ul a {
-  color           : #fff;
+  color           : #395A7F;
   text-decoration : none;
   display         : block;
   float : left;
@@ -620,7 +630,9 @@ a.reply-link:hover {
 #ticker li {
   padding       : 0.8em 0 0.8em 0.8em;
   min-height    : 25px;
-  border-bottom : 3px solid #5d5d5d;
+  border-color  : #AACBE0;
+  border-style  : solid;
+  border-width  : 1px 0;
   font-size     : 0.8em;
   margin-bottom : 0;
 }
@@ -650,11 +662,11 @@ a.reply-link:hover {
 }
 
 #ticker div.badge.feature_point {
-  background : transparent url('ticker-point.png') no-repeat scroll top left;
+  background : transparent url('ticker-bike-plus.png') no-repeat scroll top left;
 }
 
 #ticker div.badge.vote {
-  background : transparent url('ticker-heart.png') no-repeat scroll top left;
+  background : transparent url('ticker-thumbs-up.png') no-repeat scroll top left;
 }
 
 #ticker div.badge.comment {

@@ -3,7 +3,13 @@
   <div id="popup"></div>
 </div>
 
-<div id="ticker"></div>
+<div id="ticker">
+  <div id="intro">
+    <%= image_tag "chicagobikeprogram-logo.gif" %>
+    <h6>Where would you like a Bike Share location?</h6>
+    <p>Click 'Suggest a Location!' then drag the map pin to make adjustments.</p>
+  </div>
+</div>
 
 <% content_for :javascript do %>
 <script type="text/javascript" charset="utf-8">
