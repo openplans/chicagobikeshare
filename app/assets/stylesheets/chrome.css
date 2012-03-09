@@ -8,7 +8,7 @@
 }
 
 /* Forms, Inputs, & Buttons */
-label { 
+label {
   color: #737373;
   font-size: 0.8em;
   display: block;
@@ -421,10 +421,10 @@ table.regions {
    top: -9999px;
    left: -9999px;
 }
-.feature .location_types label.checkbox-button { 
+.feature .location_types label.checkbox-button {
   display: inline-block;
   cursor: pointer;
-  background: #EAEAEA url(location-type-unchecked-gradient.png) center center repeat-x scroll;  
+  background: #EAEAEA url(location-type-unchecked-gradient.png) center center repeat-x scroll;
   padding: 0.5em 0.8em;
   font-weight: bold;
   text-transform: uppercase;
@@ -520,7 +520,7 @@ a.reply-link:hover {
 .reply-header {
   margin: 1.5em 0 1em;
 }
-#reply div { 
+#reply div {
   margin: 0 0 0.5em;
 }
 #reply .sign-in-text {
@@ -745,21 +745,27 @@ a.reply-link:hover {
 
 /* HiderSlider Widget */
 .ui-sliderhider-container {
-  background: #fff url('ticker-heart.png') 10px center no-repeat scroll;
+  background: #3690CC url(button-gradient.png) center center repeat-x scroll;
+  color:#fff;
   padding: 0 30px;
   font-size: 0.8em;
   font-weight: bold;
-     -moz-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
-  -webkit-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
-          box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ui-sliderhider-title {
 }
 .ui-sliderhider-content {
+  /* We leave 1px width to deal with Chrome's fractional pixel problem, but
+     that leaves 1px of gray. This blends it in with the container. */
+  background: #E4E6E6 url(button-gradient.png) no-repeat left center scroll;
+  padding-left:4px;
 }
 .ui-sliderhider-inner {
 }
 .ui-sliderhider-slider {
+  background: transparent url(slider-overlay.png) no-repeat left center scroll;
 }
 .ui-sliderhider-close {
   display: none;
@@ -776,6 +782,53 @@ a.reply-link:hover {
 .ui-sliderhider-container .ui-sliderhider-close:hover {
   background-position: bottom left;
 }
+
+/* Thumbs up icon */
+.ui-sliderhider-container .ui-sliderhider-icon {
+  float:left;
+  width: 15px;
+  height: 15px;
+  background: url("ticker-thumbs-up.png") no-repeat scroll 0 0 transparent;
+  text-indent: -9999px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin-top: -7px !important;
+
+}
+
+/* Default styling for the slider handle */
+.ui-sliderhider-slider .ui-state-default,
+.ui-sliderhider-slider .ui-widget-content .ui-state-default,
+.ui-sliderhider-slider .ui-widget-header .ui-state-default {
+  border: 1px solid  #3690CC;
+  background: #F6F6F6;
+  opacity: 0.7;
+  -moz-opacity: 0.7;
+  filter:alpha(opacity=7);
+}
+
+.ui-sliderhider-slider.ui-slider .ui-slider-handle {
+  width:0.9em;
+  height:1.4em;
+  top: -0.4em;
+}
+
+/* Use these selectors to apply style to the slider handle state */
+/*.ui-state-hover, .ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #3690CC; background: #3690CC;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid #3690CC; background: #ffffff;
+}
+*/
 
 /*
  *
