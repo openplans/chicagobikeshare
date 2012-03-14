@@ -60,7 +60,7 @@ html, body, #wrapper {
   width:1px;
 }
 .ui-sliderhider-inner {
-  width:226px;
+  width:196px;
   margin-left:4px;
 }
 .ui-sliderhider-inner > div {
@@ -68,7 +68,7 @@ html, body, #wrapper {
   margin: 0 10px;
 }
 .ui-sliderhider-slider {
-  width: 200px;
+  width: 170px;
 }
 .ui-sliderhider-close {}
 
