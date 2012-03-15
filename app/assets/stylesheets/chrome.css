@@ -746,7 +746,7 @@ a.reply-link:hover {
 /* HiderSlider Widget */
 .ui-sliderhider-container {
 /*  background: #fff url('ticker-heart.png') 10px center no-repeat scroll;*/
-  background: #3690CC url(button-gradient.png) center center repeat-x scroll;
+  background: #3690CC url("button-gradient.png") center center repeat-x scroll;
   color:#fff;
   padding: 0 30px;
   font-size: 0.8em;
@@ -760,13 +760,13 @@ a.reply-link:hover {
 .ui-sliderhider-content {
   /* We leave 1px width to deal with Chrome's fractional pixel problem, but
      that leaves 1px of gray. This blends it in with the container. */
-  background: #E4E6E6 url(button-gradient.png) no-repeat left center scroll;
+  background: #E4E6E6 url("button-gradient.png") no-repeat left center scroll;
   padding-left:4px;
 }
 .ui-sliderhider-inner {
 }
 .ui-sliderhider-slider {
-  background: transparent url(slider-wedge-greaterthan.gif) no-repeat left center scroll;
+  background: transparent url("slider-wedge-greaterthan.gif") no-repeat left center scroll !important;
 }
 .ui-sliderhider-close {
   display: none;
