@@ -426,6 +426,9 @@ table.regions {
    top: -9999px;
    left: -9999px;
 }
+.feature .location_types label img {
+  vertical-align: bottom;
+}
 .feature .location_types label.checkbox-button {
   display: inline-block;
   cursor: pointer;

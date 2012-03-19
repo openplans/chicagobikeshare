@@ -28,6 +28,7 @@
         <% LocationType.all.each do |location_type| -%>
             <%= label_tag "", :class => "checkbox-button" do %>
               <%= check_box_tag 'feature_point[location_type_ids][]', location_type.id %>
+              <%= image_tag location_type.image.url(:icon) if location_type.image.present? %>
               <%= location_type.name %>
             <% end %>
         <% end %>
