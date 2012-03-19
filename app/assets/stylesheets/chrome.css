@@ -523,9 +523,6 @@ a.reply-link:hover {
 #reply div {
   margin: 0 0 0.5em;
 }
-#reply .sign-in-text {
-  float: none;
-}
 #reply input[type=submit] {
   margin-top: 1em;
 }
