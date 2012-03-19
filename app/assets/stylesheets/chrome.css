@@ -750,7 +750,6 @@ a.reply-link:hover {
 .ui-sliderhider-container .ui-state-default, .ui-sliderhider-container .ui-widget-content .ui-state-default, .ui-sliderhider-container .ui-widget-header .ui-state-default { background: #f6f6f6 50% 50% repeat-x; }
 
 .ui-sliderhider-container {
-/*  background: #fff url('ticker-heart.png') 10px center no-repeat scroll;*/
   background: #3690CC url("button-gradient.png") center center repeat-x scroll;
   color:#fff;
   padding: 0 30px;
@@ -768,8 +767,6 @@ a.reply-link:hover {
   background: #E4E6E6 url("button-gradient.png") no-repeat left center scroll;
   padding-left:4px;
 }
-.ui-sliderhider-inner {
-}
 .ui-sliderhider-slider {
   background: transparent url("slider-wedge-greaterthan.gif") no-repeat left center scroll !important;
 }
@@ -781,7 +778,7 @@ a.reply-link:hover {
   text-indent: -9999px;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 10px;
   margin-top: -7px !important;
   cursor: pointer;
 }
@@ -790,7 +787,6 @@ a.reply-link:hover {
 }
 
 .ui-sliderhider-container .ui-sliderhider-icon {
-  float:left;
   width: 15px;
   height: 15px;
   background: url("ticker-thumbs-up.png") no-repeat scroll 0 0 transparent;
@@ -799,7 +795,6 @@ a.reply-link:hover {
   top: 50%;
   left: 10px;
   margin-top: -7px !important;
-
 }
 
 .ui-sliderhider-slider.ui-slider .ui-slider-handle {
