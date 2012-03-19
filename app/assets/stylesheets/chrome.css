@@ -148,8 +148,13 @@ table.regions {
 }
 #access {
   float:right;
-  margin-top: 1em;
+  margin-top: 0.5em;
   padding-top: 0.5em;
+}
+#access > span {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  display: block;
 }
 #access .account,
 #access .account .my-points,
@@ -741,6 +746,9 @@ a.reply-link:hover {
 }
 
 /* HiderSlider Widget */
+.ui-sliderhider-container .ui-widget-content { background: #eeeeee 50% top repeat-x; }
+.ui-sliderhider-container .ui-state-default, .ui-sliderhider-container .ui-widget-content .ui-state-default, .ui-sliderhider-container .ui-widget-header .ui-state-default { background: #f6f6f6 50% 50% repeat-x; }
+
 .ui-sliderhider-container {
 /*  background: #fff url('ticker-heart.png') 10px center no-repeat scroll;*/
   background: #3690CC url("button-gradient.png") center center repeat-x scroll;
