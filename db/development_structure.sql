@@ -9874,39 +9874,6 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
--- Name: feature_location_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE feature_location_types (
-    id integer NOT NULL,
-    feature_id integer,
-    location_type_id integer,
-    feature_type character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: feature_location_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE feature_location_types_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: feature_location_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE feature_location_types_id_seq OWNED BY feature_location_types.id;
-
-
---
 -- Name: feature_points; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -9923,6 +9890,16 @@ CREATE TABLE feature_points (
     CONSTRAINT enforce_dims_the_geom CHECK ((st_ndims(the_geom) = 2)),
     CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'POINT'::text) OR (the_geom IS NULL))),
     CONSTRAINT enforce_srid_the_geom CHECK ((st_srid(the_geom) = 4326))
+);
+
+
+--
+-- Name: feature_points_location_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE feature_points_location_types (
+    feature_point_id integer,
+    location_type_id integer
 );
 
 
@@ -10032,6 +10009,38 @@ CREATE TABLE geometry_columns (
 SET default_with_oids = false;
 
 --
+-- Name: journeys; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE journeys (
+    id integer NOT NULL,
+    start_id integer,
+    end_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: journeys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE journeys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: journeys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE journeys_id_seq OWNED BY journeys.id;
+
+
+--
 -- Name: location_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10039,7 +10048,11 @@ CREATE TABLE location_types (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
 );
 
 
@@ -10393,13 +10406,6 @@ ALTER TABLE delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_se
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE feature_location_types ALTER COLUMN id SET DEFAULT nextval('feature_location_types_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE feature_points ALTER COLUMN id SET DEFAULT nextval('points_id_seq'::regclass);
 
 
@@ -10415,6 +10421,13 @@ ALTER TABLE feature_polygons ALTER COLUMN id SET DEFAULT nextval('feature_polygo
 --
 
 ALTER TABLE feature_regions ALTER COLUMN id SET DEFAULT nextval('feature_regions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE journeys ALTER COLUMN id SET DEFAULT nextval('journeys_id_seq'::regclass);
 
 
 --
@@ -10506,14 +10519,6 @@ ALTER TABLE ONLY delayed_jobs
 
 
 --
--- Name: feature_location_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY feature_location_types
-    ADD CONSTRAINT feature_location_types_pkey PRIMARY KEY (id);
-
-
---
 -- Name: feature_polygons_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10535,6 +10540,14 @@ ALTER TABLE ONLY feature_regions
 
 ALTER TABLE ONLY geometry_columns
     ADD CONSTRAINT geometry_columns_pk PRIMARY KEY (f_table_catalog, f_table_schema, f_table_name, f_geometry_column);
+
+
+--
+-- Name: journeys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY journeys
+    ADD CONSTRAINT journeys_pkey PRIMARY KEY (id);
 
 
 --
@@ -10737,6 +10750,13 @@ CREATE INDEX index_votes_on_user_id ON votes USING btree (user_id);
 
 
 --
+-- Name: points_types; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX points_types ON feature_points_location_types USING btree (feature_point_id, location_type_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10827,8 +10847,18 @@ INSERT INTO schema_migrations (version) VALUES ('20120125162553');
 
 INSERT INTO schema_migrations (version) VALUES ('20120130213913');
 
+INSERT INTO schema_migrations (version) VALUES ('20120227183321');
+
+INSERT INTO schema_migrations (version) VALUES ('20120227184323');
+
+INSERT INTO schema_migrations (version) VALUES ('20120227190042');
+
+INSERT INTO schema_migrations (version) VALUES ('20120221205248');
+
 INSERT INTO schema_migrations (version) VALUES ('20120228222619');
 
 INSERT INTO schema_migrations (version) VALUES ('20120229203732');
 
 INSERT INTO schema_migrations (version) VALUES ('20120301211836');
+
+INSERT INTO schema_migrations (version) VALUES ('20120319211951');

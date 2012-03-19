@@ -27,7 +27,10 @@
   
   <div class="location_types">
     <% for location_type in feature_point.location_types %>
-      <label class="checkbox-button checked"><%= location_type.name %></label>
+      <label class="checkbox-button checked">
+        <%= image_tag location_type.image.url(:icon) if location_type.image.present? %>
+        <%= location_type.name %>
+      </label>
     <% end %>
   </div>
 
