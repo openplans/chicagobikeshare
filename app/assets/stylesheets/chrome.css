@@ -53,7 +53,6 @@ button:active {
   height: 60px;
   padding: 0 1em;
   font-size: 1.6em;
-  font-weight: normal;
   line-height: 1em;
   margin-bottom: 0;
   border: 1px solid #2466A3;
@@ -619,7 +618,9 @@ a.reply-link:hover {
   color           : #395A7F;
   text-decoration : none;
   display         : block;
-  padding: 10px 0 10px 45px;
+  padding: 10px 10px 10px 45px;
+  position: relative;
+  z-index: 10;
 }
 #ticker ul a:hover {
   color: #444;
@@ -643,6 +644,7 @@ a.reply-link:hover {
   height: 28px;
   text-align: right;
   margin: 10px 0 10px 10px;
+  z-index: 5;
 }
 #ticker .avatar img {
   width: 28px;
