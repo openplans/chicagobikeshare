@@ -50,17 +50,17 @@ button:active {
 }
 #locate_feature,
 #finalize_feature {
-  height: 60px;
+  height: 2.5em;
   padding: 0 1em;
   font-size: 1.6em;
-  line-height: 1em;
+  line-height: 2.4em;
   margin-bottom: 0;
-  border: 1px solid #2466A3;
+  border: 1px solid #3066a2;
   border-radius: 5px;
   -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
            border-radius: 5px;
-  background: #3690CC url(button-gradient-large.png) center center repeat-x scroll;
+  background: #2cbfec url(button-gradient-large.png) center bottom repeat-x scroll;
 }
 
 /* Tables */
@@ -147,13 +147,15 @@ table.regions {
 }
 #access {
   float:right;
-  margin-top: 0.5em;
   padding-top: 0.5em;
 }
 #access > span {
-  text-transform: uppercase;
-  font-size: 0.7em;
   display: block;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #b8d5e6;
 }
 
 #access .account,
@@ -179,35 +181,44 @@ table.regions {
   background: transparent url('thumbs-up.png') no-repeat scroll center left;
   color: pink;
 }
+#access .menu {
+  position: relative;
+}
 #access .menu a {
-  padding: 0 0.5em;
-  font-weight: normal;
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
   margin: 0;
-  font-size: 0.8em;
+  padding: 0.1em 0.3em;
 }
 #access .menu img {
-  height: 3em;
+  height: 40px;
   vertical-align: middle;
 }
 #access .menu span.arrow-s {
   font-size: 0.5em;
-  border-top-color: #444;
-  margin: 0 0.5em;
+  border-top-color: #addcf0;
+  margin: 0 5px;
 }
 #access .menu li {
-  background-color: #666;
-  border-style: solid;
-  border-color: #5D5D5D;
-  border-width: 2px 0;
+  background-color: #42b4e2;
+  border: 0;
   display: none;
-}
-#access .menu:hover li {
-  display:block;
+  line-height: 1.5;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  white-space: nowrap;
 }
 #access .menu li:first-child {
   display: block;
-  border: 0;
-  line-height:0px;
+  line-height: 0px;
+  position: relative;
+  top: 0;
+}
+#access .menu:hover li {
+  display:block;
 }
 .sign-in-text {
   float: left;
@@ -738,14 +749,20 @@ and (min-device-width : 320px)
 and (max-device-width : 480px) {
   #wrapper { font-size: 10px; }
   #header {
-    height: 4em;
-    padding: 0 0.5em 0 1em;
+    height: 65px;
+    padding: 0 10px;
+    background: url(cdot-background-sm.jpg) center top no-repeat scroll;
   }
   #content {
-    top: 4em;
+    top: 65px;
   }
   #site-title {
     font-size: 2.75em;
+  }
+  #site-title a {
+    background: url(cdot-logo-sm.png) 0 0 no-repeat scroll;
+    width: 94px;
+    height: 45px;
   }
   #footer {
     bottom: 4.5em;
@@ -758,25 +775,22 @@ and (max-device-width : 480px) {
     display: inline;
   }
   #access {
-    margin: 0.25em 0 0;
+    margin: 3px 0 0;
     padding: 0;
   }
-  #access > span {
-    display: none;
-  }
   #pages {
-    margin: 0.5em 0 0 0.5em;
+    margin: 7px 0 0 20px;
     float: right;
     background: url(mobile-pages.gif) center center no-repeat scroll;
-    width: 28px;
-    height: 28px;
+    width: 38px;
+    height: 32px;
     overflow: visible;
   }
   #pages ul {
     display: none;
-    background: #666666;
+    background: #1f8ac2;
     position: absolute;
-    top: 4em;
+    top: 65px;
     left: 0;
     right: 0;
     text-align: center;
@@ -790,19 +804,34 @@ and (max-device-width : 480px) {
   #pages li {
     display: block;
     float: none;
-    font-size: 2em;
-    border-top: 2px solid #5D5D5D;
+    font-size: 2.2em;
+    border-top: 2px solid #2577b1;
     margin: 0;
   }
   #pages a {
     display: block;
-    padding: 0.5em 0;
+    padding: 0.4em 0;
+    background-image: none;
+    background-color: transparent;
+    color: #fff;
+    margin: 0;
+    float: none;
+    border: 0;
+    text-shadow: 1px -1px 0 #3066a2;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
   }
   #pages:hover a {
     display: block;
   }
 
   #access .account { display:none; }
+
+  #access .menu a {
+    padding: 0.1em 0.3em;
+    font-size: 1.5em;
+  }
 }
 
 /* smartphones (landscape) ----------- */
