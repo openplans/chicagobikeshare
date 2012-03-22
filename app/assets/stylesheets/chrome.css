@@ -156,6 +156,7 @@ table.regions {
   font-size: 0.7em;
   display: block;
 }
+
 #access .account,
 #access .account .my-points,
 #access .account .my-supports,
@@ -277,98 +278,28 @@ table.regions {
  * Feature Popup
  *
  */
- .information-panel {
-   position: absolute;
-   top: 15px;
-   right: 15px;
-   bottom: 45px;
- }
-
-.information-panel-content-wrap {
+.information-panel-content .feature,
+.information-panel-content .page {
   background-color: white;
   border: 1px solid #a8a8a8;
-  position : relative;
-  z-index:10000;
-  overflow-y: hidden;
-  height: 100%;
+  padding: 1.5em;
      -moz-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
   -webkit-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
           box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
-  /* Explicit absolute, top/left/right/bottom instead of height:100% for IE7 only */
-  *position : absolute;
-  *top      : 0;
-  *left     : 0;
-  *right    : 0;
-  *bottom   : 0;
 }
-.information-panel-content-wrap:after {
-	content: "";
-	height: 5px;
-  background: url("popup-overflow.png") repeat-x scroll 0 0 transparent;
-	position: absolute;
-	right: 0.75em;
-	bottom: 0;
-	left: 0.75em;
-	border-bottom: 0.75em solid #fff;
-}
-
 .information-panel-content {
   line-height: 1.5;
 }
-
-.information-panel-content .feature,
-.information-panel-content .page {
-  overflow-y: auto;
+.information-panel-content:after {
+  content: "";
+  height: 5px;
+  background: url("popup-overflow.png") repeat-x scroll 0 0 transparent;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: 0;
-  padding: 1em 1em 2em 1em;
-}
-.information-panel-content .feature.show {
-  top: 76px;
-}
-
-.information-panel .close {
-  width: 14px;
-  height: 14px;
-  background: url("close-bttn.png") no-repeat scroll 0 0 transparent;
-  text-indent: -9999px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10001;
-}
-.information-panel .close:hover { background-position: bottom left; }
-
-.information-panel .popup-tip-wrapper {
-  margin: -1px auto 0;
-	width: 40px;
-	height: 16px;
-	position: relative;
-	overflow: hidden;
-	z-index: 10002;
-}
-
-.information-panel .popup-tip {
-  background: white;
-  width: 15px;
-	height: 15px;
-	padding: 1px;
-
-	margin: -11px auto 0;
-
-	-moz-transform: rotate(45deg);
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-
-	box-shadow: 0 1px 10px #888;
-	-moz-box-shadow: 0 1px 10px #888;
-	-webkit-box-shadow: 0 1px 14px #999;
+  right: 1em;
+  bottom: 1px;
+  left: 1em;
+  border-bottom: 0.75em solid #fff;
+  z-index: 100;
 }
 
 /* Feature Popup - Content */
@@ -574,16 +505,10 @@ a.reply-link:hover {
 
 /* Feature Popup - Social Buttons */
 .information-panel .social {
-  height: 75px;
-  background-color: #eee;
-  border-bottom: 1px solid #a8a8a8;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+     -moz-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
+  -webkit-box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
+          box-shadow: -4px 4px 0 rgba(85, 85, 85, 0.5);
 }
-
 .social form.vote button[type=submit] {
   background-color: #e4e4e4;
   color: #444;
@@ -662,11 +587,9 @@ a.reply-link:hover {
   -webkit-box-shadow: -4px 0 0 rgba(85, 85, 85, 0.5);
           box-shadow: -4px 0 0 rgba(85, 85, 85, 0.5);
 }
-
 #content.ticker_on #map-container {
   right : 14em;
 }
-
 #content.ticker_on #ticker {
   display  : block;
   position : absolute;
@@ -687,65 +610,58 @@ a.reply-link:hover {
 #ticker #intro p {
   margin-top: 1em;
 }
-
 #ticker ul {
   background-color: #E4E6E6;
   margin: 0;
   text-align: left;
 }
-
 #ticker ul a {
   color           : #395A7F;
   text-decoration : none;
   display         : block;
-  float : left;
-  width : 12em;
+  padding: 10px 0 10px 45px;
 }
-
+#ticker ul a:hover {
+  color: #444;
+}
 #ticker li {
-  padding       : 0.8em 0 0.8em 0.8em;
+  padding: 0;
   min-height    : 25px;
   border-color  : #AACBE0;
   border-style  : solid;
   border-width  : 1px 0;
   font-size     : 0.8em;
   margin-bottom : 0;
+  position: relative;
 }
-
 #ticker li.loading > div {
   margin : 1em auto;
   width  : 13px;
 }
-
 #ticker .avatar {
-  width      : 35px;
-  height     : 35px;
-  margin-right : 0.5em;
-  text-align : right;
+  width: 28px;
+  height: 28px;
+  text-align: right;
+  margin: 10px 0 10px 10px;
 }
-
 #ticker .avatar img {
-  width : 90%;
+  width: 28px;
 }
-
 #ticker div.badge {
-  width : 16px;
-  height : 16px;
-  bottom : 0;
-  left : 0;
-  position : absolute;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 20px;
+  right: 18px;
 }
-
 #ticker div.badge.feature_point {
-  background : transparent url('ticker-bike-plus.png') no-repeat scroll top left;
+  background : transparent url('ticker-bike-plus.png') no-repeat scroll center center;
 }
-
 #ticker div.badge.vote {
-  background : transparent url('ticker-thumbs-up.png') no-repeat scroll top left;
+  background : transparent url('ticker-thumbs-up.png') no-repeat scroll center center;
 }
-
 #ticker div.badge.comment {
-  background : transparent url('ticker-comment.png') no-repeat scroll top left;
+  background : transparent url('ticker-comment.png') no-repeat scroll center center;
 }
 
 /* HiderSlider Widget */
@@ -821,15 +737,13 @@ and (max-device-width : 480px) {
   #wrapper { font-size: 10px; }
   #header {
     height: 4em;
+    padding: 0 0.5em 0 1em;
   }
   #content {
     top: 4em;
   }
   #site-title {
-    font-size: 2.25em;
-  }
-  #access {
-    margin-top: 1.5em;
+    font-size: 2.75em;
   }
   #footer {
     bottom: 4.5em;
@@ -841,6 +755,52 @@ and (max-device-width : 480px) {
   #footer button {
     display: inline;
   }
+  #access {
+    margin: 0.25em 0 0;
+    padding: 0;
+  }
+  #access > span {
+    display: none;
+  }
+  #pages {
+    margin: 0.5em 0 0 0.5em;
+    float: right;
+    background: url(mobile-pages.gif) center center no-repeat scroll;
+    width: 28px;
+    height: 28px;
+    overflow: visible;
+  }
+  #pages ul {
+    display: none;
+    background: #666666;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    text-align: center;
+       -moz-box-shadow: 0 4px 0 rgba(85, 85, 85, 0.5);
+    -webkit-box-shadow: 0 4px 0 rgba(85, 85, 85, 0.5);
+            box-shadow: 0 4px 0 rgba(85, 85, 85, 0.5);
+  }
+  #pages ul.active {
+    display: block;
+  }
+  #pages li {
+    display: block;
+    float: none;
+    font-size: 2em;
+    border-top: 2px solid #5D5D5D;
+    margin: 0;
+  }
+  #pages a {
+    display: block;
+    padding: 0.5em 0;
+  }
+  #pages:hover a {
+    display: block;
+  }
+
+  #access .account { display:none; }
 }
 
 /* smartphones (landscape) ----------- */

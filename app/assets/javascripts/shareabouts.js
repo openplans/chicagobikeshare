@@ -164,14 +164,21 @@ $.widget("ui.shareabout", (function() {
      * Opens the popup for a feature
      */
     viewFeature : function(fId) {
-      // Reset the state so we can show a feature
-      if (fsm.can("ready")) {
-        fsm.ready();
-      } else if (fsm.can("cancel")) {
-        fsm.cancel();
-      }
+      if (fsm.is("viewingFeature")) {
+        // Don't reset everything if I'm already showing a feature
+        // No state change is triggered.
+        this._unsetFocusedIcon();
+        this._viewFeature(fId);
+      } else {
+        // Reset the state
+        if (fsm.can("ready")) {
+          fsm.ready();
+        } else if (fsm.can("cancel")) {
+          fsm.cancel();
+        }
 
-      fsm.viewFeature(fId);
+        fsm.viewFeature(fId);
+      }
     },
 
     /**
@@ -258,7 +265,6 @@ $.widget("ui.shareabout", (function() {
     /*
      * Private
      */
-
     // Fetch the polygon data from options.polygonsUrl
     _getFeaturePolygons: function(url, success, error) {
       var self = this;
@@ -314,6 +320,58 @@ $.widget("ui.shareabout", (function() {
         map.addLayer(invertedLayer);
       }
      },
+    _viewFeature: function(fId) {
+      var self = this,
+          onMap = !!layersOnMap[fId],
+          cacheIndex = self._getCachedFeatureIndex(fId),
+          inCache = cacheIndex !== null;
+
+
+      // Internal helper function
+      var openPopup = function(featureOnMap) {
+        var resource_path;
+
+        // Does the marker have content already? Does this mean the current
+        // marker?
+        if (featureOnMap._html) {
+          self._openPopupWith( featureOnMap );
+        } else {
+          // No? Okay, go get it
+          resource_path = self.options.featureUrl.replace(/FEATURE_ID/, fId);
+          $.get( resource_path, function(data){
+            self._openPopupWith( featureOnMap, data.view);
+
+            // Update the url
+            if (window.history && window.history.pushState) {
+              window.history.pushState(null, null, resource_path);
+            }
+          }, "json");
+        }
+      };
+
+      // If the marker is on the map, then open the popup!
+      if (onMap) {
+        openPopup(layersOnMap[fId]);
+      } else {
+        // It's in the cache, but not on the map. Add it manually so
+        // the popup can open. That will trigger a map move and then
+        // the rest of the markers will sync up.
+        if (inCache) {
+          self.addMapFeature(featurePointsCache[cacheIndex]);
+          openPopup(layersOnMap[fId]);
+        } else {
+          // Oops, we don't know about the guy at all. Let's sync up the
+          // cache, manually add the feature, then open the popup.
+          self._fetch(function() {
+            // Fetch updates the cache, so let's get the index again
+            cacheIndex = self._getCachedFeatureIndex(fId);
+
+            self.addMapFeature(featurePointsCache[cacheIndex]);
+            openPopup(layersOnMap[fId]);
+          });
+        }
+      }
+    },
 
     // Fetches feature locations from the server and populates
     // the cache. This function will always check the cache
@@ -466,9 +524,6 @@ $.widget("ui.shareabout", (function() {
 
       marker._id = fId;
       marker.on("click", function(click){
-        if (fsm.can("ready")) fsm.ready();
-        else if (fsm.can("cancel")) fsm.cancel();
-
         shareabout.viewFeature(this._id);
       });
     },
@@ -505,6 +560,11 @@ $.widget("ui.shareabout", (function() {
 
       fsm.onchangestate = function(eventName, from, to) {
         // if (window.console) window.console.info("Transitioning from " + from + " to " + to + " via " + eventName);
+
+        // Allow callbacks for state change events
+        if (shareabout.options.callbacks[eventName]) {
+          shareabout.options.callbacks[eventName]();
+        }
       };
 
       /*
@@ -512,6 +572,9 @@ $.widget("ui.shareabout", (function() {
        * Drops a marker on the map at the center
        */
       fsm.onlocateNewFeature = function (eventName, from, to) {
+        // Make sure the map is sized for its container correctly
+        map.invalidateSize();
+
         if (shareabout._touch_screen()) {
           var wrapper = $("<div>").attr("id", "crosshair"),
               img     = $("<img>").attr("src", shareabout.options.crosshairIcon.iconUrl);
@@ -524,7 +587,7 @@ $.widget("ui.shareabout", (function() {
           shareabout.newFeature.setLatLng(map.getCenter());
           if (shareabout.newFeature.dragging) { shareabout.newFeature.dragging.enable(); }
 
-          // Reset the icon when adding sincd we set it to the "focused" icon when confirming
+          // Reset the icon when adding since we set it to the "focused" icon when confirming
           shareabout.newFeature.setIcon(shareabout.options.newMarkerIcon);
 
           map.addLayer(shareabout.newFeature);
@@ -596,54 +659,7 @@ $.widget("ui.shareabout", (function() {
        *
        */
       fsm.onviewFeature = function(eventName, from, to, fId) {
-        // Internal helper function
-        var openPopup = function(featureOnMap) {
-          var resource_path;
-
-          // Does the marker have content already? Does this mean the current
-          // marker?
-          if (featureOnMap._html) {
-            shareabout._openPopupWith( featureOnMap );
-          } else {
-            // No? Okay, go get it
-            resource_path = shareabout.options.featureUrl.replace(/FEATURE_ID/, fId);
-            $.get( resource_path, function(data){
-              shareabout._openPopupWith( featureOnMap, data.view);
-
-              // Update the url
-              if (window.history && window.history.pushState) {
-                window.history.pushState(null, null, resource_path);
-              }
-            }, "json");
-          }
-        };
-
-        var onMap = !!layersOnMap[fId],
-            cacheIndex = shareabout._getCachedFeatureIndex(fId),
-            inCache = cacheIndex !== null;
-
-        // If the marker is on the map, then open the popup!
-        if (onMap) {
-          openPopup(layersOnMap[fId]);
-        } else {
-          // It's in the cache, but not on the map. Add it manually so
-          // the popup can open. That will trigger a map move and then
-          // the rest of the markers will sync up.
-          if (inCache) {
-            shareabout.addMapFeature(featurePointsCache[cacheIndex]);
-            openPopup(layersOnMap[fId]);
-          } else {
-            // Oops, we don't know about the guy at all. Let's sync up the
-            // cache, manually add the feature, then open the popup.
-            shareabout._fetch(function() {
-              // Fetch updates the cache, so let's get the index again
-              cacheIndex = shareabout._getCachedFeatureIndex(fId);
-
-              shareabout.addMapFeature(featurePointsCache[cacheIndex]);
-              openPopup(layersOnMap[fId]);
-            });
-          }
-        }
+        shareabout._viewFeature(fId);
       };
 
       fsm.onleaveviewingFeature = function(eventName, from, to) {
