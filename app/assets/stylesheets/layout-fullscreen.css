@@ -70,7 +70,6 @@ html, body, #wrapper {
  * Feature Popup
  */
 #popup {
-  z-index: 10;
 }
 .information-panel {
   position: absolute;
@@ -158,7 +157,6 @@ html, body, #wrapper {
   position: absolute;
   right: 40px;
   bottom: 50px;
-  z-index: 5;
 }
 .ui-sliderhider-container > div {
   float: left;
