@@ -1,21 +1,23 @@
 require 'spec_helper'
 
 describe FeaturePoint do
+  it { should have_many(:votes)}
+  it { should have_many(:comments)}
+  it { should have_many(:feature_regions)}
+  it { should have_many(:regions)}
+  it { should have_many(:activity_items)}
+  it { should have_many(:children_activity_items)}
+  
+  it { should have_one(:feature_location_type)}
+  it { should have_one(:location_type)}
+  
+  it { should belong_to(:profile)}
+  
+  
+  it { should validate_presence_of(:the_geom) }
   
   describe "validations" do
-    describe "the_geom" do
-      context "when absent" do
-        attr_reader :point
-        
-        before do
-          @point = new_feature_point :the_geom => nil, :nil_the_geom => true
-        end
-        
-        it "is invalid" do
-          point.should_not be_valid
-        end
-      end
-      
+    describe "the_geom" do      
       context "when outside of any regions" do
         attr_reader :point
         
@@ -48,65 +50,7 @@ describe FeaturePoint do
       end
     end
   end
-  
-  describe "associations" do
-    attr_reader :point
-    
-    before do
-      @point = create_feature_point
-    end
-    
-    context "user" do
-      attr_reader :user
-      
-      before do
-        @user = create_user
-        @point.update_attribute :user_id, user.id
-      end
-      
-      it "belongs_to" do
-        point.user.should == user
-      end
-    end
-    
-    context "votes" do
-      attr_reader :vote
-      
-      before do
-        @vote = create_vote :supportable => point
-      end
-      
-      it "has_many" do
-        point.votes.should include(vote)
-      end
-    end
-    
-    context "comments" do
-      attr_reader :comment
-      
-      before do
-        @comment = create_comment :commentable => point
-      end
-      
-      it "has_many" do
-        point.comments.should include(comment)
-      end
-    end
-    
-    context "location_type" do
-      attr_reader :location_type
-      
-      before do
-        @location_type = create_location_type
-        location_type.feature_points << point
-      end
-      
-      it "has_many" do
-        point.location_types.should include(location_type)
-      end
-    end
-  end
-  
+
   # instance methods
   describe "a point" do
     attr_reader :point
@@ -215,11 +159,12 @@ describe FeaturePoint do
       attr_reader :user
       
       before do
-        point.user = (@user = create_user)
+        @user = create_profile.user
+        point.profile = user.profile
       end
       
       it "displays submitter display name" do
-        point.display_submitter.should == point.user.name
+        point.display_submitter.should == point.profile.name
       end
     end
     
@@ -254,7 +199,7 @@ describe FeaturePoint do
     context "after being set to invisible" do
       before do
         point.activity_items.should be_present
-        create_vote :supportable => point, :user => create_user
+        create_vote :supportable => point, :profile => create_profile
         point.reload.children_activity_items.should be_present
         
         point.update_attribute :visible, false          
