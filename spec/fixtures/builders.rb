@@ -47,6 +47,18 @@ Fixjour :verify => false do
     })
   end
   
+  define_builder(Profile) do |klass, overrides|
+    user_options = {}
+    user_options.email = overrides["email"] if overrides["email"].present?
+    
+    klass.new({
+      :user => new_user(user_options), 
+      :name => Faker::Name.name,
+      :user_agent => Faker::Lorem.sentence,
+      :client_ip => Array.new(4){rand(256)}.join('.')
+    })
+  end
+  
   define_builder(Admin) do |klass, overrides|
     klass.new({
       :email => Faker::Internet.email, 

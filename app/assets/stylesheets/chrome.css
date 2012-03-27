@@ -300,7 +300,7 @@ table.regions {
 .information-panel-content {
   line-height: 1.5;
 }
-.information-panel-content:after {
+.overflowing .information-panel-content:after {
   content: "";
   height: 5px;
   background: url("popup-overflow.png") repeat-x scroll 0 0 transparent;
@@ -561,6 +561,7 @@ a.reply-link:hover {
 .social .sharing ul,
 .social .sharing li {
   margin: 0;
+  display: inline;
 }
 .social .sharing li a {
   float: left;
@@ -568,6 +569,7 @@ a.reply-link:hover {
   height: 20px;
   margin: 0 10px 5px 0;
   text-indent: -10000px;
+  display: inline;
 }
 .social .sharing li a.twitter {
   background: url("twitter.gif") no-repeat scroll 0 0 transparent;

@@ -14,7 +14,9 @@
       </div>
     </div>
   <% else %>
-    <div class="sign-in-text clearfix"><%= render "shared/signed_in.html" %></div>
+    <div class="clearfix">
+      <div class="sign-in-text"><%= render "shared/signed_in.html" %></div>
+    </div>
   <% end %>
   <%= form.submit t("feature.comment.action") %>
 <% end %>

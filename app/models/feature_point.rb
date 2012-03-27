@@ -27,7 +27,8 @@ class FeaturePoint < ActiveRecord::Base
   has_many :children_activity_items, :as => :subject_parent, :class_name => "ActivityItem", :dependent => :destroy
   has_many :feature_points_location_types
   has_many :location_types, :through => :feature_points_location_types
-  belongs_to :user
+  belongs_to :profile
+  has_one    :user, :through => :profile
 
   before_create :find_regions
   after_create :add_to_regions
@@ -75,7 +76,7 @@ class FeaturePoint < ActiveRecord::Base
   end
 
   def display_submitter
-    user.try(:name) || (submitter_name.present? ? submitter_name : User.model_name.human.capitalize)
+    profile.try(:name) || (submitter_name.present? ? submitter_name : User.model_name.human.capitalize)
   end
   
   def region
