@@ -8,8 +8,8 @@ describe FeaturePoint do
   it { should have_many(:activity_items)}
   it { should have_many(:children_activity_items)}
   
-  it { should have_one(:feature_location_type)}
-  it { should have_one(:location_type)}
+  it { should have_many(:feature_points_location_types)}
+  it { should have_many(:location_types)}
   
   it { should belong_to(:profile)}
   
