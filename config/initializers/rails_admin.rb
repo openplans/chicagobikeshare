@@ -94,7 +94,7 @@ RailsAdmin.config do |config|
       items_per_page 100
       field :visible
       field :name
-      field :location_type do
+      field :location_types do
         searchable
       end
       field :profile do
@@ -119,7 +119,7 @@ RailsAdmin.config do |config|
         label 'Title'
       end
       field :description
-      field :location_type
+      field :location_types
       field :profile do
         label 'Contributer'
       end
@@ -145,13 +145,13 @@ RailsAdmin.config do |config|
       end
       field :description
       field :support_count
-      field :profile_id do
-        label 'Contributer id'
+      field :profile do
+        label 'Contributer'
       end
       field :display_submitter do
         label 'Sumbitter name'
       end
-      field :location_type
+      field :location_types
       field :regions
       field :created_at
     end
