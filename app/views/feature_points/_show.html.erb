@@ -21,17 +21,8 @@
 
     <span class="weak comment-date">
       <%= t "feature.submitted_by", :in_region => ("in #{feature_point.region.name}" if feature_point.region) %>
-      <%= t "feature.when_date", :date => l(feature_point.created_at, :format => :date_long) -%>.
+      <%= t "feature.when_date", :date => l(feature_point.created_at, :format => :date_long) -%><%= " for #{feature_point.location_types_to_s}" if feature_point.location_types.present? -%>.
     </span>
-  </div>
-  
-  <div class="location_types">
-    <% for location_type in feature_point.location_types %>
-      <label class="checkbox-button checked">
-        <%= image_tag location_type.image.url(:icon) if location_type.image.present? %>
-        <%= location_type.name %>
-      </label>
-    <% end %>
   </div>
 
   <% if feature_point.description.present? %>

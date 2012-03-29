@@ -47,6 +47,12 @@ class FeaturePoint < ActiveRecord::Base
     )
   end
   
+  def location_types_to_s
+    types = location_types.map(&:name)
+    types[-1] = "and #{types[-1]}" unless types.length < 2
+    types.join(", ")
+  end
+  
   def journey
     t = Journey.arel_table
 
