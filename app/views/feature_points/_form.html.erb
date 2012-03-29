@@ -13,13 +13,24 @@
     <% if !current_user %>
     <fieldset class="auth">
       <div>
-        <%= form.label :submitter_name, t("feature.form.submitter_name_label") %>
-        <%= form.text_field :submitter_name, :placeholder => t("feature.form.submitter_name_label") %>
+        <%= form.fields_for :profile, @feature_point.profile do |fields| %>
+          <%= fields.label :name, t("feature.form.submitter_name_label") %>
+          <%= fields.text_field :name, :placeholder => t("feature.form.submitter_name_label") %>
+          <%= fields.label :email, t("feature.form.submitter_email_label") %>
+          <%= fields.text_field :email %>
+        <% end %>
         <p>
           <span class="sign-in-text">Or <%= t("auth.sign_in") %></span>
           <%= render "shared/sign_in" %>
         </p>
       </div>
+    </fieldset>
+    <% elsif current_user.twitter_id.present? %>
+    <fieldset class="auth">
+      <%= form.fields_for :profile, @feature_point.profile do |fields| %>
+        <%= fields.label :email, t("feature.form.submitter_email_label") %>
+        <%= fields.text_field :email %>
+      <% end %>
     </fieldset>
     <% end %>
     <fieldset>
@@ -36,6 +47,12 @@
       <div>
         <%= form.label :description, t("feature.form.description_label") %>
         <%= form.text_area :description, :placeholder => t("feature.form.description_label"), :cols => 1, :rows => 4 %>
+      </div>
+      <div>
+        <%= form.fields_for :profile, @feature_point.profile do |fields| %>
+          <%= fields.label :zip_code, t("feature.form.submitter_zip_label") %>
+          <%= fields.text_field :zip_code, :placeholder => t("feature.form.submitter_zip_label") %>
+        <% end %>
       </div>
     </fieldset>
     <div>

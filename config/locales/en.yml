@@ -25,6 +25,8 @@ en:
       title_label: Location Name
       description_label: Comment...
       submitter_name_label: 'Your Name'
+      submitter_email_label: 'Email Address'
+      submitter_zip_label: 'Your Zip Code'
       submit: 'Submit Location'
     purpose: 'This location is a %{type}.'
     submitted_by: 'suggested a station %{in_region}'

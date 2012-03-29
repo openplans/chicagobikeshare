@@ -34,6 +34,8 @@ class FeaturePoint < ActiveRecord::Base
   after_create :add_to_regions
   after_initialize :set_defaults
   after_update :maybe_remove_activity_items
+  
+  accepts_nested_attributes_for :profile
 
   validates :the_geom,  :presence => true
   validates_with InRegionValidator, :if => lambda { Region.any? }

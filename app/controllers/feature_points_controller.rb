@@ -1,6 +1,6 @@
 class FeaturePointsController < ApplicationController
 
-  before_filter :ignore_feature_location_type_fields_if_empty, :find_or_create_profile, :only => :create  
+  before_filter :ignore_feature_location_type_fields_if_empty, :find_or_create_profile, :update_profile, :only => :create  
   before_filter :set_cache_buster, :only => :show # for IE8
   
   def index
@@ -14,7 +14,7 @@ class FeaturePointsController < ApplicationController
   end
   
   def new
-    @feature_point = FeaturePoint.new
+    @feature_point = FeaturePoint.new :profile => (current_profile || Profile.new)
 
     respond_to do |format|
       format.json { render :json => { :view => render_to_string(:partial => "form.html") } }
@@ -22,8 +22,12 @@ class FeaturePointsController < ApplicationController
   end
   
   def create
-    @feature_point = FeaturePoint.new params[:feature_point].merge({:the_geom => the_geom_from_params(params), :profile => @profile})
-    
+    @feature_point = FeaturePoint.new params[:feature_point].merge({
+      :the_geom       => the_geom_from_params(params), 
+      :submitter_name => @profile.name, 
+      :profile        => @profile
+    })
+        
     if @feature_point.save
       respond_to do |format|
         format.json do
@@ -84,6 +88,15 @@ class FeaturePointsController < ApplicationController
   end
   
   private
+  
+  # If profile attributes have been submitted with the point, 
+  # update the attributes, save profile cookie. 
+  def update_profile
+    profile_attributes        = params[:feature_point].delete(:profile_attributes) || {}
+    profile_attributes[:name] = params[:feature_point][:submitter_name] if params[:feature_point][:submitter_name].present?
+    @profile.update_attributes(profile_attributes)
+    set_profile_cookie @profile
+  end
   
   def the_geom_from_params(p)
     Point.from_x_y p[:longitude].to_f, p[:latitude].to_f, 4326

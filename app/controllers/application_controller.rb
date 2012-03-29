@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
       current_user.profile
     elsif cookies[:profile].inspect != "nil" # requires that we have set the profile cookie
       require 'profile'
-      Marshal.load(cookies[:profile])
+      Marshal.load(cookies[:profile]).reload
     else
       set_profile_cookie Profile.find_by_request_fingerprint(request)
     end
