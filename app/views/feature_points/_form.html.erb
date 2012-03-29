@@ -17,7 +17,7 @@
           <%= fields.label :name, t("feature.form.submitter_name_label") %>
           <%= fields.text_field :name, :placeholder => t("feature.form.submitter_name_label") %>
           <%= fields.label :email, t("feature.form.submitter_email_label") %>
-          <%= fields.text_field :email %>
+          <%= fields.text_field :email, :placeholder => t("feature.form.submitter_email_label") %>
         <% end %>
         <p>
           <span class="sign-in-text">Or <%= t("auth.sign_in") %></span>

@@ -465,11 +465,8 @@ $.widget("ui.shareabout", (function() {
     },
 
     _unsetFocusedIcon : function() {
-      if (this.focusedMarkerLayer) {
-        var cacheIndex = this._getCachedFeatureIndex(this.focusedMarkerLayer._id);
-        this.focusedMarkerLayer.setIcon( 
-          this.iconFor(featurePointsCache[cacheIndex].location_type) );
-      }
+      if (this.focusedMarkerLayer) 
+        this.focusedMarkerLayer.setIcon( this.options.markerIcon);
     },
 
     _resetState : function() {
