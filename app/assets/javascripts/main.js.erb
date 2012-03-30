@@ -16,20 +16,20 @@ $(function() {
 
   var FocusedMarkerIcon = L.Icon.extend({
     iconUrl     : '<%= image_path("marker-bike-focus.png") %>',
-  	iconSize    : new L.Point(25, 41),
-  	iconAnchor  : new L.Point(13, 41),
-  	popupAnchor : new L.Point(0, -33),
-  	shadowSize  : new L.Point(41, 41),
-  	shadowUrl   : '<%= image_path("marker-shadow.png") %>'
+    iconSize    : new L.Point(25, 41),
+    iconAnchor  : new L.Point(13, 41),
+    popupAnchor : new L.Point(0, -33),
+    shadowSize  : new L.Point(41, 41),
+    shadowUrl   : '<%= image_path("marker-shadow.png") %>'
   });
 
   var NewMarkerIcon = L.Icon.extend({
     iconUrl     : '<%= image_path("marker-bike-new.png") %>',
-  	iconSize    : new L.Point(25, 41),
-  	iconAnchor  : new L.Point(13, 41),
-  	popupAnchor : new L.Point(0, -33),
-  	shadowSize  : new L.Point(41, 41),
-  	shadowUrl   : '<%= image_path("marker-shadow.png") %>'
+    iconSize    : new L.Point(25, 41),
+    iconAnchor  : new L.Point(13, 41),
+    popupAnchor : new L.Point(0, -33),
+    shadowSize  : new L.Point(41, 41),
+    shadowUrl   : '<%= image_path("marker-shadow.png") %>'
   });
 
   var CrosshairIcon = L.Icon.extend({
@@ -138,13 +138,29 @@ $(function() {
   });
 
   // Register click event within InformationPanel
-  Map.shareabout("addClickEventListenerToPopup", "form[data-behavior=load_result_in_popup] :submit", function(mouseEvent, target){
-    var form = $(mouseEvent.target).closest("form");
+  var throttledVoteCallback = (function() {
+    var done = true;
+    return function(mouseEvent, target){
+      if (done) {
+        done = false;
+        var $form = $(mouseEvent.target).closest("form"),
+            $button = $('button', $form),
+            $label = $('.vote-label', $form),
+            votes = parseInt($label.text(), 10);
 
-    $.post( form.attr("action"), form.serialize(), function(data) {
-      Map.shareabout("getPopup").setContent(data.view);
-    }, "json" );
-  });
+        // Update the state of the button right away
+        $button.is('.supported') ? votes-- : votes++;
+        $button.toggleClass('supported');
+        $label.text(votes);
+
+        $.post( $form.attr("action"), $form.serialize(), function(data) {
+          Map.shareabout("getPopup").setContent(data.view);
+        },
+        "json").complete(function() { done = true; });
+      }
+    };
+  })();
+  Map.shareabout("addClickEventListenerToPopup", "form[data-behavior=load_result_in_popup] :submit", throttledVoteCallback);
 
   // UI Elements that affect map state
   locate_feature.click( function(event) {

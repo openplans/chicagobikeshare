@@ -549,7 +549,7 @@ a.reply-link:hover {
 .social form.vote button[type=submit] span {
   background : transparent url(thumbs-up-gray.png) no-repeat scroll top left;
 }
-.social form.vote button[type=submit] span.supported {
+.social form.vote button[type=submit].supported span {
   background : transparent url(thumbs-up.png) no-repeat scroll top left;
 }
 
