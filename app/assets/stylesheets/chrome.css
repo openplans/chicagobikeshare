@@ -558,10 +558,10 @@ a.reply-link:hover {
   width: 140px;
   margin: 1em 0 0 0;
 }
+
 .social .sharing ul,
 .social .sharing li {
   margin: 0;
-  display: inline;
 }
 .social .sharing li a {
   float: left;
@@ -569,7 +569,6 @@ a.reply-link:hover {
   height: 20px;
   margin: 0 10px 5px 0;
   text-indent: -10000px;
-  display: inline;
 }
 .social .sharing li a.twitter {
   background: url("twitter.gif") no-repeat scroll 0 0 transparent;
@@ -585,6 +584,47 @@ a.reply-link:hover {
 }
 .social .sharing li a.link {
   background: url("link.png") no-repeat scroll 0 0 transparent;
+}
+
+.social .sharing .copy-link-container {
+  position: relative;
+}
+
+.social .sharing .copy-link {
+  z-index: 10002;
+  position: absolute;
+  color: #444;
+  border: 1px solid #DDD;
+  font-size: 0.8em;
+  left: 32px;
+  width:150px;
+  top: -1px;
+  padding: 3px;
+  outline-width: 0;
+  display: none;
+}
+
+.social .sharing .copy-link:before {
+  content: "";
+  border-color: transparent #DDD transparent transparent;
+  border-style: solid;
+  border-width: 6px;
+  height:0;
+  width:0;
+  position:absolute;
+  top:4px;
+  left:-13px;
+}
+.social .sharing .copy-link:after {
+  content: "";
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+  border-width: 6px;
+  height:0;
+  width:0;
+  position:absolute;
+  top:4px;
+  left:-12px;
 }
 
 
@@ -840,6 +880,11 @@ and (max-device-width : 480px) {
   }
   .leaflet-control-attribution img {
     display:none;
+  }
+
+  .social .sharing .copy-link {
+    font-size: 1.2em;
+    width:90px;
   }
 }
 
