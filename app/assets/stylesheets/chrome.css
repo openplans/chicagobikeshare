@@ -886,6 +886,7 @@ and (max-device-width : 480px) {
     font-size: 1.2em;
     width:90px;
   }
+}
 
 /* smartphones (landscape) ----------- */
 @media only screen
