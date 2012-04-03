@@ -32,6 +32,7 @@ class FeaturePoint < ActiveRecord::Base
 
   before_create :find_regions
   after_create :add_to_regions
+  after_create :create_vote
   after_initialize :set_defaults
   after_update :maybe_remove_activity_items
   
@@ -109,7 +110,8 @@ class FeaturePoint < ActiveRecord::Base
       :properties => {
         :id             => id,
         :name           => name,
-        :description    => description
+        :description    => description,
+        :location_type  => location_type
       }
     }
   end
@@ -126,6 +128,10 @@ class FeaturePoint < ActiveRecord::Base
   end
 
   private
+  
+  def create_vote
+    votes.create :profile => profile
+  end
 
   def set_defaults
     return unless new_record?

@@ -29,10 +29,12 @@ class FeaturePointsController < ApplicationController
     })
         
     if @feature_point.save
+      find_and_store_vote @feature_point
+      
       respond_to do |format|
         format.json do
           flash[:notice] = I18n.t( "feature.notice.point_added")
-          render :json => { :geoJSON => @feature_point.as_geo_json, :status => "success" }
+          render :json => { :feature_point => @feature_point.as_json, :status => "success" }
         end
       end
     else
@@ -96,6 +98,11 @@ class FeaturePointsController < ApplicationController
     profile_attributes[:name] = params[:feature_point][:submitter_name] if params[:feature_point][:submitter_name].present?
     @profile.update_attributes(profile_attributes)
     set_profile_cookie @profile
+  end
+
+  def find_and_store_vote(feature_point)
+    vote = @profile.votes.where(:supportable_id => feature_point.id, :supportable_type => feature_point.class.to_s).first
+    store_vote_in_cookie vote
   end
   
   def the_geom_from_params(p)

@@ -595,7 +595,7 @@ $.widget("ui.shareabout", (function() {
              if (data.status && data.status == "error")
                fsm.errorNewFeature(null, data);
              else
-               fsm.viewFeature(data.geoJSON.properties.id, data);
+               fsm.viewFeature(data.feature_point.id, data);
            }
          };
          if ( typeof ajaxOptions == "object" ) $.extend(true, ajaxCfg, ajaxOptions);
@@ -607,13 +607,20 @@ $.widget("ui.shareabout", (function() {
        */
       fsm.onleavesubmittingNewFeature = function (eventName, from, to, id, responseData) {
         if (to === "viewingFeature") {
+          // Set up focused marker
           var marker = new L.Marker(shareabout.newFeature.getLatLng(), { icon: shareabout.options.focusedMarkerIcon });
-          shareabout._setupMarker(marker, responseData.geoJSON.properties);
+          shareabout._setupMarker(marker, responseData.feature_point);
+          
+          // Remove new feature marker
           map.removeLayer(shareabout.newFeature);
 
           // Indicate that the new marker is on the map
           layersOnMap[id] = marker;
           map.addLayer(marker);
+          
+          // Add to cache
+          featurePointsCache = featurePointsCache.concat(responseData.feature_point);
+          popularityStats    = shareabout._getPopularityStats();
         } else if (to === "finalizingNewFeature") {
           $(".shareabouts-side-popup-content").html(responseData.view);
         }

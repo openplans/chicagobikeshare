@@ -315,14 +315,15 @@ $(function() {
 
   // Sets the visibility of the overflow indicator in the popup
   function setPopupOverflowIndicatorVisibility($popupContent) {
-    var el = $popupContent.get(0);
+    var el = $popupContent.get(0),
+        padding = 10;
 
     // Only show the indicator if...
     $('.information-panel').toggleClass('overflowing', (
       // ...this is scrollable
       el.clientHeight < el.scrollHeight &&
       // ...and we are not at the bottom
-      ($popupContent.scrollTop() - 10) < el.scrollHeight - el.clientHeight
+      ($popupContent.scrollTop() + padding) < el.scrollHeight - el.clientHeight
     ));
   }
 });
