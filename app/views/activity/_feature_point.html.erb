@@ -3,5 +3,5 @@
   <%= t("activity.point.action") %> 
   <%= t("activity.point.indefinite_article")%>
   <%= FeaturePoint.model_name.human %> 
-  <%= t("activity.point.in_region", :region => activity_item.region.try(:name)) %>.
+  <%= t("activity.point.in_region", :region => activity_item.feature.region_name)) %>.
 </a>

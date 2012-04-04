@@ -9890,6 +9890,7 @@ CREATE TABLE feature_points (
     visible boolean,
     submitter_name character varying(255),
     profile_id integer,
+    region_name character varying(255),
     CONSTRAINT enforce_dims_the_geom CHECK ((st_ndims(the_geom) = 2)),
     CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'POINT'::text) OR (the_geom IS NULL))),
     CONSTRAINT enforce_srid_the_geom CHECK ((st_srid(the_geom) = 4326))
@@ -11035,3 +11036,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120321180827');
 INSERT INTO schema_migrations (version) VALUES ('20120326172058');
 
 INSERT INTO schema_migrations (version) VALUES ('20120327195149');
+
+INSERT INTO schema_migrations (version) VALUES ('20120404165422');

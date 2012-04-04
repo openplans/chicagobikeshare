@@ -2,5 +2,5 @@
   <strong><%= activity_item.user_name %></strong> 
   <%= t("activity.vote.action") %> 
   <%= activity_item.description %> 
-  <%= t("activity.point.in_region", :region => activity_item.region.try(:name)) %>.
+  <%= t("activity.point.in_region", :region => activity_item.feature.region_name)) %>.
 </a>

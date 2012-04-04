@@ -106,7 +106,7 @@ RailsAdmin.config do |config|
         searchable :submitter_name
       end
       field :support_count
-      field :regions
+      field :region_name
       field :display_the_geom do
         label 'Location'
       end
@@ -127,7 +127,7 @@ RailsAdmin.config do |config|
         label 'Contributer name'
         searchable
       end
-      field :regions
+      field :region_name
       field :comments
       field :support_count
       field :display_the_geom do
@@ -152,7 +152,7 @@ RailsAdmin.config do |config|
         label 'Sumbitter name'
       end
       field :location_types
-      field :regions
+      field :region_name
       field :created_at
     end
   end

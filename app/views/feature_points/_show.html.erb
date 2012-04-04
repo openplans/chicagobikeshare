@@ -20,7 +20,7 @@
     <% end %>
 
     <span class="weak comment-date">
-      <%= t "feature.submitted_by", :in_region => ("in #{feature_point.region.name}" if feature_point.region) %>
+      <%= t "feature.submitted_by", :in_region => ("in #{feature_point.region_name}" if feature_point.region_name.present?) %>
       <%= t "feature.when_date", :date => l(feature_point.created_at, :format => :date_long) -%><%= " for #{feature_point.location_types_to_s}" if feature_point.location_types.present? -%>.
     </span>
   </div>
