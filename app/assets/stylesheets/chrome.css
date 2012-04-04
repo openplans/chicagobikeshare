@@ -556,13 +556,15 @@ a.reply-link:hover {
 
 .social .sharing {
   float: left;
-  width: 140px;
+  width: 155px;
   margin: 1em 0 0 0;
 }
-
 .social .sharing ul,
 .social .sharing li {
   margin: 0;
+}
+.social .sharing li {
+  display: inline;
 }
 .social .sharing li a {
   float: left;
@@ -589,9 +591,6 @@ a.reply-link:hover {
 
 .social .sharing .copy-link-container {
   position: relative;
-  float: left;
-  margin: 0;
-  padding: 0;
 }
 
 .social .sharing .copy-link {
