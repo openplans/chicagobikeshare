@@ -27,7 +27,7 @@ html, body, #wrapper {
 }
 #pages li {
   float: left;
-  margin-right: 1em;
+  margin-right: 0.4em;
 }
 #content {
   position: absolute;
