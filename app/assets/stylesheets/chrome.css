@@ -889,6 +889,43 @@ and (max-device-width : 480px) {
     font-size: 1.2em;
     width:90px;
   }
+
+  .information-panel-content .feature.show { top: 38px; }
+  .information-panel .social { height: 37px; }
+  .social .sharing { margin-top: 8px; width: auto; }
+  .social .sharing li a { margin: 0 5px 0 0; }
+  .social .sharing li a.link { display: none; }
+  .social .sharing li a.email { clear: none;  }
+
+  .social form.vote button[type=submit],
+  .social form.vote button[type=submit].supported {
+    background-color: transparent;
+    border: 0;
+    margin: 0 10px 0 0;
+    padding: 0;
+    width: auto;
+    height: 37px;
+       -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .social form.vote button[type=submit] div {
+    color: #e4e4e4;
+    font-size: 0;
+    position: relative;
+  }
+  .social form.vote button[type=submit] span {
+    display: block;
+    float: left;
+    margin: 7px 0 7px 10px;
+    padding: 0 0 0 25px;
+    font-size: 18px;
+    line-height: 22px;
+    background : transparent url(thumbs-up-gray.png) no-repeat scroll top left;
+  }
+  .social form.vote button[type=submit].supported span {
+    background : transparent url(thumbs-up.png) no-repeat scroll top left;
+  }
 }
 
 /* smartphones (landscape) ----------- */
