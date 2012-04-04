@@ -93,6 +93,9 @@ RailsAdmin.config do |config|
     list do
       items_per_page 100
       field :visible
+      field :region_name do
+        label 'Neighborhood'
+      end
       field :name
       field :location_types do
         searchable
@@ -106,7 +109,6 @@ RailsAdmin.config do |config|
         searchable :submitter_name
       end
       field :support_count
-      field :region_name
       field :display_the_geom do
         label 'Location'
       end
@@ -115,6 +117,9 @@ RailsAdmin.config do |config|
     
     show do
       field :visible
+      field :region_name do
+        label 'Neighborhood'
+      end
       field :name do
         label 'Title'
       end
@@ -127,7 +132,6 @@ RailsAdmin.config do |config|
         label 'Contributer name'
         searchable
       end
-      field :region_name
       field :comments
       field :support_count
       field :display_the_geom do
@@ -152,7 +156,9 @@ RailsAdmin.config do |config|
         label 'Sumbitter name'
       end
       field :location_types
-      field :region_name
+      field :region_name do
+        label 'Neighborhood'
+      end
       field :created_at
     end
   end
