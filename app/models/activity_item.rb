@@ -15,7 +15,7 @@ class ActivityItem < ActiveRecord::Base
   end
   
   def user_name
-    read_attribute(:user_name) || User.model_name.human.capitalize
+    read_attribute(:user_name).present? ? read_attribute(:user_name) : User.model_name.human.capitalize
   end
   
   def description

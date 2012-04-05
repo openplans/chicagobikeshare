@@ -1,5 +1,7 @@
 class Profile < ActiveRecord::Base
   
+  NULL_ATTRS = %w(name)
+  
   belongs_to :user, :dependent => :destroy
   has_many :activity_items, :dependent => :destroy
   has_many :comments, :dependent => :destroy
@@ -9,6 +11,8 @@ class Profile < ActiveRecord::Base
   
   validates :user_agent, :uniqueness => { :scope => :client_ip }, :allow_blank => true
   validates :user_id, :uniqueness => true, :allow_blank => true
+  
+  before_save :nullify_attrs
   
   def self.find_by_request_fingerprint(request)    
     where(request_fingerprint request).first
@@ -26,6 +30,10 @@ class Profile < ActiveRecord::Base
       :client_ip  => request.remote_ip, 
       :user_id    => nil
     }
+  end
+  
+  def nullify_attrs
+    NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? }
   end
   
 end

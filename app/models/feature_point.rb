@@ -85,7 +85,9 @@ class FeaturePoint < ActiveRecord::Base
   end
 
   def display_submitter
-    profile.try(:name) || (submitter_name.present? ? submitter_name : User.model_name.human.capitalize)
+    return profile.name   if profile && profile.name.present?
+    return submitter_name if submitter_name.present?
+    return User.model_name.human.capitalize
   end
   
   def region
