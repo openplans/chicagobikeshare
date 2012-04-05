@@ -782,6 +782,11 @@ a.reply-link:hover {
   background: url("slider-handle.gif") no-repeat scroll 0 0 transparent;
 }
 
+/* Wufoo Form */
+.wufoo .info {
+  display: none;
+}
+
 /*
  *
  * Media Queries for Layout & Style Overrides
