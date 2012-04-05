@@ -40,6 +40,32 @@ $(function() {
     shadowSize  : new L.Point(0,0) // no shadow
   });
 
+  function getScrollBarWidth () {
+    var inner = document.createElement('p');
+    inner.style.width = "100%";
+    inner.style.height = "200px";
+
+    var outer = document.createElement('div');
+    outer.style.position = "absolute";
+    outer.style.top = "0px";
+    outer.style.left = "0px";
+    outer.style.visibility = "hidden";
+    outer.style.width = "200px";
+    outer.style.height = "150px";
+    outer.style.overflow = "hidden";
+    outer.appendChild (inner);
+
+    document.body.appendChild (outer);
+    var w1 = inner.offsetWidth;
+    outer.style.overflow = 'scroll';
+    var w2 = inner.offsetWidth;
+    if (w1 == w2) w2 = outer.clientWidth;
+
+    document.body.removeChild (outer);
+
+    return (w1 - w2);
+  };
+
   // Init the slider for filtering the results by popularity
   var initPopularitySlider = function(values) {
     // Popularity Filter
@@ -63,6 +89,9 @@ $(function() {
   var latLngToQueryString = function(latlng) {
     return "latitude=" + latlng.lat + "&longitude=" + latlng.lng;
   };
+
+  // Get the scrollbar width and save it to our namespaced object
+  window.shareabouts.scrollBarWidth =  getScrollBarWidth();
 
   // Initialize shareabouts map
   Map.shareabout({
@@ -112,6 +141,13 @@ $(function() {
           var $popupContent = $(this);
           setPopupOverflowIndicatorVisibility($popupContent);
         });
+
+        // Reset the margin when it won't overlap the scrollbar
+        $('.information-panel .close').css('marginRight', '0px');
+        // Adjust the close button based on the scrollbar
+        $('.page').parents('.information-panel.overflowing').find('.close')
+          .css('marginRight', window.shareabouts.scrollBarWidth + 'px');
+
       },
       locateNewFeature: function() {
         // Hide mobile dropdown menu if visible
