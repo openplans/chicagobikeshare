@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  app_name: Shareabouts
+  app_name: Chicago Department of Transportation Bike Program
   map_controls:
     locate_feature: 'Suggest Location!'
     finalize_feature: 'Confirm Location'
