@@ -32,5 +32,17 @@ describe CommentsController do
         assigns(:comment).should_not be_new_record
       end
     end
+    
+    context "when in panic mode" do
+      before do
+        SiteOption.create :option_name => "site_mode", :option_value => "panic"
+      end
+      
+      it "is unauthorized" do
+        lambda {
+          xhr :post, :create, :feature_point_id => feature_point.id, :comment => { :comment => "t" }
+        }.should raise_error(CanCan::AccessDenied)
+      end
+    end
   end
 end

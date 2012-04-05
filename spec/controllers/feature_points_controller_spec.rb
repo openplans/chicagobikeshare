@@ -80,6 +80,18 @@ describe FeaturePointsController do
             :latitude => new_point.latitude, 
             :longitude => new_point.longitude}
         end
+        
+        context "when in panic mode" do
+          before do
+            SiteOption.create :option_name => "site_mode", :option_value => "panic"
+          end
+          
+          it "is unauthorized" do
+            lambda {
+              xhr :post, :create, params, :format => "json"
+            }.should raise_error(CanCan::AccessDenied)
+          end
+        end
               
         it "is creates a feature point" do
           xhr :post, :create, params, :format => "json"
@@ -183,6 +195,18 @@ describe FeaturePointsController do
     before do
       @feature_point = create_feature_point
       @valid_params = {:feature_point => { :visible => "0" }, :id => feature_point.id}
+    end
+    
+    context "when in panic mode" do
+      before do
+        SiteOption.create :option_name => "site_mode", :option_value => "panic"
+      end
+      
+      it "is unauthorized" do
+        lambda {
+          xhr :put, :update, valid_params
+        }.should raise_error(CanCan::AccessDenied)
+      end
     end
     
     context "for authorized updater" do

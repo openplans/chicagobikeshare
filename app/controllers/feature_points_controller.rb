@@ -14,6 +14,8 @@ class FeaturePointsController < ApplicationController
   end
   
   def new
+    authorize! :create, FeaturePoint
+    
     @feature_point = FeaturePoint.new :profile => (current_profile || Profile.new)
 
     respond_to do |format|
@@ -22,6 +24,8 @@ class FeaturePointsController < ApplicationController
   end
   
   def create
+    authorize! :create, FeaturePoint
+    
     @feature_point = FeaturePoint.new params[:feature_point].merge({
       :the_geom       => the_geom_from_params(params), 
       :submitter_name => @profile.name, 

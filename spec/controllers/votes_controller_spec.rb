@@ -42,6 +42,18 @@ describe VotesController do
         cookie[:FeaturePoint][feature_point.id].should == assigns(:vote).id      
       end
     end
+    
+    context "when in panic mode" do
+      before do
+        SiteOption.create :option_name => "site_mode", :option_value => "panic"
+      end
+      
+      it "is unauthorized" do
+        lambda {
+          xhr :post, :create, :feature_point_id => feature_point.id
+        }.should raise_error(CanCan::AccessDenied)
+      end
+    end
   end
   
   describe "DELETE destroy" do

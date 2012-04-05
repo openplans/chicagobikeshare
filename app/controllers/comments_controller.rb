@@ -1,7 +1,9 @@
-class CommentsController < ApplicationController
+class CommentsController < ApplicationController  
   before_filter :get_commentable, :find_or_create_profile, :only => :create
   
   def create
+    authorize! :create, Comment
+    
     @comment = @commentable.comments.create params[:comment].merge(:profile => @profile)    
     
     respond_to do |format|

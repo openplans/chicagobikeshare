@@ -1,9 +1,10 @@
 class VotesController < ApplicationController
-  
   before_filter :get_supportable
   before_filter :find_or_create_profile, :only => :create
   
   def create
+    authorize! :create, Vote
+    
     @vote = @supportable.votes.create :profile => @profile
     
     store_vote_in_cookie @vote
@@ -18,6 +19,8 @@ class VotesController < ApplicationController
   end
   
   def destroy
+    authorize! :destroy, Vote
+    
     if current_user
       @vote = current_user.votes.find params[:id]
     else

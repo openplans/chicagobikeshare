@@ -20,9 +20,11 @@ class Ability
         cannot :manage, Admin
       end
     else
+      return if SiteOption.read_only?
+      
       can :create, FeaturePoint
       can :create, Comment
-      can :create, Vote
+      can :manage, Vote
     end
   end
 end
