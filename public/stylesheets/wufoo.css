@@ -1,0 +1,4 @@
+/* hide the Wufoo form header */
+.wufoo .info {
+  display: none;
+}
