@@ -5,7 +5,7 @@ describe FeaturePointsController do
     create_profile
   end
   
-  describe "GET index" do
+  describe "GET index" do    
     context "with format JSON" do
       it "is a success" do
         xhr :get, :index, :format => "json"
@@ -49,9 +49,23 @@ describe FeaturePointsController do
     end
     
     context "with format HTML" do
+      render_views
       it "is a success" do
         get :index
         response.should be_success
+      end
+      
+      context "when in panic mode" do
+        before do
+          SiteOption.create :option_name => "site_mode", :option_value => "panic"
+        end
+        
+        it "is unauthorized" do
+          get :index
+          pending "i dont know how to test this"
+          # response.should render_template('403.html')
+          # response.should_render :file => "#{Rails.root}/public/403.html", :status => "403 Not Found"
+        end
       end
     end
   end

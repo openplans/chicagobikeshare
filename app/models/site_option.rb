@@ -10,6 +10,8 @@ class SiteOption < ActiveRecord::Base
   
   validates :option_name, :presence => true, :uniqueness => true
   
+  PanicMessage = "Submissions are temporarily disabled."
+  
   def self.[](name)
     find_by_option_name name
   end

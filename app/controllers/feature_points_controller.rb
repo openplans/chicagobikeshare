@@ -4,6 +4,8 @@ class FeaturePointsController < ApplicationController
   before_filter :set_cache_buster, :only => :show # for IE8
   
   def index
+    authorize! :read, FeaturePoint, :message => SiteOption::PanicMessage
+    
     respond_to do |format|
       format.html
       format.json do

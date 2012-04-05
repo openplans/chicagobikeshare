@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :set_admin_current_admin
   
+  rescue_from CanCan::AccessDenied do |exception|
+    if exception.message == SiteOption::PanicMessage
+      render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+    else
+      raise exception
+    end
+  end
+  
   def set_locale
     I18n.locale = env['rack.locale'] || I18n.default_locale
   end
