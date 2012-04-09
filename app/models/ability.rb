@@ -14,11 +14,24 @@ class Ability
       can :access, :rails_admin
       can :manage, :all
       
+      cannot :manage, FeaturePolygon
+      
       # Only super admins can create and edit site options & admins
       unless user.role? :superadmin
         cannot :manage, SiteOption
         cannot :manage, Admin
       end
+      
+      # limited admins can't do much
+      if user.role? :limited
+        # cannot :manage, Profile
+        cannot :manage, Vote
+        cannot :manage, Page
+        cannot :manage, Shapefile
+        cannot :manage, LocationType
+        cannot :manage, Region
+      end
+      
     else
       if SiteOption.read_only?
         cannot :read, FeaturePoint

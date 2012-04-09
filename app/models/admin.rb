@@ -23,6 +23,8 @@ class Admin < ActiveRecord::Base
     case rolename
     when :superadmin
       return level >= 100
+    when :limited
+      return level <= 10
     else
       return false
     end
