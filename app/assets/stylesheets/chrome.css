@@ -300,8 +300,8 @@ table.regions {
 .information-panel-content {
   line-height: 1.5;
 }
-.overflowing .information-panel-content:after {
-  content: "";
+
+.information-panel-content-overflow {
   height: 5px;
   background: url("popup-overflow.png") repeat-x scroll 0 0 transparent;
   position: absolute;
@@ -310,6 +310,10 @@ table.regions {
   left: 1em;
   border-bottom: 0.75em solid #fff;
   z-index: 100;
+  display:none;
+}
+.overflowing .information-panel-content-overflow {
+  display:block;
 }
 
 /* Feature Popup - Content */

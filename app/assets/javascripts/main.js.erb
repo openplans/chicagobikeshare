@@ -134,14 +134,6 @@ $(function() {
         // Hide mobile dropdown menu if visible
         $('#pages ul').removeClass('active');
 
-        // Init the visibility indicator when the popup content loads
-        setPopupOverflowIndicatorVisibility($('.page, .feature'));
-        // Check to see if the visibility indicator should be shown on scroll
-        $('.page, .feature').scroll(function(e) {
-          var $popupContent = $(this);
-          setPopupOverflowIndicatorVisibility($popupContent);
-        });
-
         // Reset the margin when it won't overlap the scrollbar
         $('.information-panel .close').css('marginRight', '0px');
         // Adjust the close button based on the scrollbar
@@ -295,18 +287,4 @@ $(function() {
   $('#pages').click(function(){
     $('#pages ul').toggleClass('active');
   });
-
-  // Sets the visibility of the overflow indicator in the popup
-  function setPopupOverflowIndicatorVisibility($popupContent) {
-    var el = $popupContent.get(0),
-        padding = 10;
-
-    // Only show the indicator if...
-    $('.information-panel').toggleClass('overflowing', (
-      // ...this is scrollable
-      el.clientHeight < el.scrollHeight &&
-      // ...and we are not at the bottom
-      ($popupContent.scrollTop() + padding) < el.scrollHeight - el.clientHeight
-    ));
-  }
 });
