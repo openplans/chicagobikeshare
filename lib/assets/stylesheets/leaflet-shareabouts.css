@@ -18,6 +18,7 @@
   background-color : #fcf3c6;
   background-color : rgba(252, 243, 198, 0.9);
   border : 1px solid #c9a670;
+  *background-color : #fcf3c6;
 }
 
 .shareabouts-label-overlay-content,
@@ -28,6 +29,7 @@
   float : left;
   white-space : nowrap;
   border-width: 1px 1px 1px 0;
+  *border-width: 1px 1px 1px 1px;
 }
 
 .shareabouts-label-overlay-tip-container {
@@ -48,6 +50,7 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+  *display: none;
 }
 
 .mobile-hint-overlay {
