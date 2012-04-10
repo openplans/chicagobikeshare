@@ -567,6 +567,9 @@ a.reply-link:hover {
 .social .sharing li {
   margin: 0;
 }
+.social .sharing li {
+  display: inline;
+}
 .social .sharing li a {
   float: left;
   width: 22px;
@@ -889,7 +892,6 @@ and (max-device-width : 480px) {
   .information-panel-content .feature.show { top: 38px; }
   .information-panel .social { height: 37px; }
   .social .sharing { margin-top: 8px; width: auto; }
-  .social .sharing li { display: inline; }
   .social .sharing li a { margin: 0 5px 0 0; }
   .social .sharing li a.link { display: none; }
   .social .sharing li a.email { clear: none;  }
