@@ -88,7 +88,7 @@ RailsAdmin.config do |config|
     label "Point"
     label_plural "Points"
     
-    navigation_label "Map features"
+    navigation_label "Map"
 
     list do
       items_per_page 100
@@ -185,7 +185,7 @@ RailsAdmin.config do |config|
   
   config.model Comment do
     object_label_method :comment
-    parent Profile
+    parent FeaturePoint
     
     list do
       field :comment
@@ -265,6 +265,17 @@ RailsAdmin.config do |config|
     navigation_label "Site Admin"
     weight 500
     object_label_method :email 
+    configure :role
+    
+    edit do
+      fields :email, :password, :password_confirmation, :level
+    end
+    
+    list do
+      fields :email, :level
+      field :role
+      fields :sign_in_count, :last_sign_in_at
+    end
   end
   
   config.model SiteOption do

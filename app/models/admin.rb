@@ -19,10 +19,22 @@ class Admin < ActiveRecord::Base
     read_attribute(:level) || 0
   end
   
+  def role
+    if level <= 10
+      :limited
+    elsif level >= 100
+      :superadmin
+    else
+      :admin
+    end
+  end
+  
   def role?(rolename)
     case rolename
     when :superadmin
       return level >= 100
+    when :limited
+      return level <= 10
     else
       return false
     end
