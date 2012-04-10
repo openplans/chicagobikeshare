@@ -13,12 +13,12 @@ en:
     twitter_signin: 'Sign in with Twitter'
     sign_in: 'sign in with'
   account:
-    my_points: 'My Points'
+    my_points: 'My Stations'
     my_supports: 'Supported'
   feature:
     notice:
-      point_added: 'Thank you! Your point was added to the map. Please, share it with your friends.'
-      invalid: 'There are some errors with your point.'
+      point_added: 'Thank you! Your suggestion was added to the map. Please, share it with your friends.'
+      invalid: 'There are some errors with your suggestion.'
       out_of_bounds: "Point doesn't fall within the defined regions"
     form:
       header: 'Suggest a location...'
@@ -49,9 +49,7 @@ en:
     comment:
       action: 'commented on'
     point:
-      action: added
-      indefinite_article: a
-      by_name: "%{name}'s point"
+      by_name: "%{name}'s suggestion"
       in_region: "in %{region}"
   # Model names and model attribute names
   activerecord:
