@@ -649,27 +649,30 @@ a.reply-link:hover {
           box-shadow: -4px 0 0 rgba(85, 85, 85, 0.5);
 }
 #content.ticker_on #map-container {
-  right : 14em;
+  right : 15em;
 }
 #content.ticker_on #ticker {
   display  : block;
   position : absolute;
-  width    : 14em;
+  width    : 15em;
   bottom   : 0;
   right    : 0;
   top      : 0;
   z-index  : 10000;
   overflow : auto;
+  overflow-x: hidden;
   background-color: #CDE4F1;
   text-align: center;
 }
 
 #ticker #intro {
-  padding: 1em 0.2em 0;
+  padding: 1em 0 0;
 }
-
+#ticker #intro h6 {
+  margin: 0.5em 1em 0;
+}
 #ticker #intro p {
-  margin-top: 1em;
+  margin: 1em;
 }
 #ticker ul {
   background-color: #E4E6E6;
