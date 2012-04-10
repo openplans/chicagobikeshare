@@ -88,7 +88,7 @@ RailsAdmin.config do |config|
     label "Point"
     label_plural "Points"
     
-    navigation_label "Map features"
+    navigation_label "Map"
 
     list do
       items_per_page 100
@@ -185,7 +185,7 @@ RailsAdmin.config do |config|
   
   config.model Comment do
     object_label_method :comment
-    parent Profile
+    parent FeaturePoint
     
     list do
       field :comment

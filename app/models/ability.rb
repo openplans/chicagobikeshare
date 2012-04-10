@@ -24,7 +24,7 @@ class Ability
       
       # limited admins can't do much
       if user.role? :limited
-        # cannot :manage, Profile
+        cannot :manage, Profile
         cannot :manage, Vote
         cannot :manage, Page
         cannot :manage, Shapefile
