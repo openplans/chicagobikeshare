@@ -164,14 +164,14 @@ html, body, #wrapper {
 }
 
 /*
- * Polularity Filter (SliderHider)
+ * Popularity Filter (HiderSlider)
  */
 .ui-hiderslider-container {
   overflow: visible;
   position: absolute;
   right: 40px;
   bottom: 50px;
-  z-index: 5;
+  z-index: 6;
 }
 .ui-hiderslider-container > div {
   float: left;
