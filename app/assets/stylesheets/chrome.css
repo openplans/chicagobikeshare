@@ -107,16 +107,16 @@ table.regions {
           box-shadow: 0 4px 0 rgba(85, 85, 85, 0.5);
 }
 #pages a {
-  background: #de8700 url(pages-menu-gradient.png) center center repeat-x scroll;
+  background: #d3100b url(pages-menu-gradient.png) center center repeat-x scroll;
   color: #fff;
   margin-right: 10px;
   font-weight: bold;
   text-decoration: none;
   float: left;
   padding: 0.4em 1em;
-  border: 1px solid #b06a00;
-  border-top: 1px solid #d68800;
-  border-bottom: 1px solid #844700;
+  border: 1px solid #d3100b;
+  border-top: 1px solid #ff1d0d;
+  border-bottom: 1px solid #c50a15;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -125,7 +125,9 @@ table.regions {
   color: #fff;
 }
 #site-title {
+  float: left;
   padding-top: 10px;
+  margin: 0;
 }
 #site-title a {
   background: url(cdot-logo.png) 0 0 no-repeat scroll;
@@ -137,7 +139,7 @@ table.regions {
 #site-title a:hover {
 }
 #pages {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 30px;
   float: left;
 }
@@ -147,7 +149,7 @@ table.regions {
 }
 #access {
   float:right;
-  padding-top: 0.5em;
+  padding-top: 15px;
 }
 #access > span {
   display: block;
@@ -824,11 +826,10 @@ and (max-device-width : 480px) {
     display: inline;
   }
   #access {
-    margin: 3px 0 0;
-    padding: 0;
+    padding-top: 10px;
   }
   #pages {
-    margin: 7px 0 0 20px;
+    margin: 20px 0 0 20px;
     float: right;
     background: url(mobile-pages.gif) center center no-repeat scroll;
     width: 38px;
