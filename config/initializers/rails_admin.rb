@@ -265,6 +265,17 @@ RailsAdmin.config do |config|
     navigation_label "Site Admin"
     weight 500
     object_label_method :email 
+    configure :role
+    
+    edit do
+      fields :email, :password, :password_confirmation, :level
+    end
+    
+    list do
+      fields :email, :level
+      field :role
+      fields :sign_in_count, :last_sign_in_at
+    end
   end
   
   config.model SiteOption do
