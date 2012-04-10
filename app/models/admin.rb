@@ -20,12 +20,12 @@ class Admin < ActiveRecord::Base
   end
   
   def role
-    if level <= 10
-      :limited
-    elsif level >= 100
+    if level >= 100
       :superadmin
-    else
+    elsif level > 10
       :admin
+    else
+      :limited
     end
   end
   
@@ -35,6 +35,8 @@ class Admin < ActiveRecord::Base
       return level >= 100
     when :limited
       return level <= 10
+    when :admin
+      return true
     else
       return false
     end

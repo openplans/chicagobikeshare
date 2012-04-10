@@ -26,7 +26,6 @@ class Ability
       if user.role? :limited
         cannot :manage, Profile
         cannot :manage, Vote
-        cannot :manage, Page
         cannot :manage, Shapefile
         cannot :manage, LocationType
         cannot :manage, Region
