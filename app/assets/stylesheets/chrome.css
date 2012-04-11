@@ -754,7 +754,7 @@ a.reply-link:hover {
   padding-left:4px;
 }
 .ui-hiderslider-slider {
-  background: transparent url("slider-wedge-greaterthan.gif") no-repeat left center scroll !important;
+  background: transparent url("slider-wedge-lessthan.gif") no-repeat left center scroll !important;
 }
 .ui-hiderslider-close {
   display: none;

@@ -22,6 +22,8 @@ $.widget("ui.shareabout", (function() {
       focusedMarkerIcon    : new L.Icon(), //default icon, can be customized
       newMarkerIcon        : new L.Icon(), //default icon, can be customized
       crosshairIcon        : null, // L.Icon for crosshair used when locating on touch screen devices
+      zoomedOutIcon        : null,
+      zoomThreshold        : 0, // when zoom drops to this, use the zoomedOutIcon, if it exists
       //
       withinBounds         : true,
       featuresUrl          : null, // url to all features geoJSON
@@ -76,6 +78,26 @@ $.widget("ui.shareabout", (function() {
       map.on('drag', function(drag) {
         self.hint.remove();
       } );
+      
+      // Icon switching at zoom icon threshold
+      this.previousZoom = this.options.initialZoom;
+      map.on('zoomend', function(event){
+        if (!self.options.zoomedOutIcon) return;
+        
+        var zoom = map.getZoom();
+
+        if ( zoom > self.options.zoomThreshold && self.previousZoom <= self.options.zoomThreshold) {
+          for (i in layersOnMap) {
+            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.markerIcon);                      
+          }
+        } else if ( zoom <= self.options.zoomThreshold && self.previousZoom > self.options.zoomThreshold) {
+          for (i in layersOnMap) {
+            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.zoomedOutIcon);            
+          }
+        }
+        
+        self.previousZoom = zoom;
+      });
 
       // Update featurePointsCache and populate the map
       this._fetch(function(){
@@ -186,22 +208,15 @@ $.widget("ui.shareabout", (function() {
     },
 
     addMapFeature: function(feature){
+      var icon = map.getZoom() > this.options.zoomThreshold ? this.options.markerIcon : this.options.zoomedOutIcon;
       markerLayer = new L.Marker(
         new L.LatLng(feature.lat, feature.lon),
-        { icon: this.iconFor(feature.location_type) }
+        { icon: icon }
       );
       this._setupMarker(markerLayer, { id: feature.id });
 
       layersOnMap[feature.id] = markerLayer;
       map.addLayer(markerLayer);
-    },
-
-    // If a marker icon exists for this location's type, use that as the marker
-    iconFor : function(location_type) {
-      if (this.options.locationTypeMarkerIcons[location_type])
-        return new this.options.locationTypeMarkerIcons[location_type]();
-      else
-        return this.options.markerIcon;
     },
 
     // Refresh map features from the cache for the current extent.
