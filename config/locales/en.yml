@@ -17,16 +17,16 @@ en:
     my_supports: 'Supported'
   feature:
     notice:
-      point_added: 'Thank you! Your suggestion was added to the map. Please, share it with your friends.'
+      point_added: 'Your suggestion was added to the map. Share it with your friends!'
       invalid: 'There are some errors with your suggestion.'
-      out_of_bounds: "Point doesn't fall within the defined regions"
+      out_of_bounds: 'Oops, please suggest a station location within Chicago city limits.'
     form:
-      header: 'Suggest a location...'
+      header: 'Suggest a location'
       title_label: Location Name
-      description_label: Comment...
-      submitter_name_label: 'Your Name'
-      submitter_email_label: 'Email Address'
-      submitter_zip_label: 'Your Zip Code'
+      description_label: 'Why is this a good location for a bike share station?'
+      submitter_name_label: 'Your name'
+      submitter_email_label: 'Email address'
+      submitter_zip_label: 'Home zip code'
       submit: 'Submit Location'
     purpose: 'This location is a %{type}.'
     submitted_by: 'suggested a station %{in_region}'
