@@ -107,22 +107,24 @@ table.regions {
           box-shadow: 0 4px 0 rgba(85, 85, 85, 0.5);
 }
 #pages a {
-  background: #d3100b url(pages-menu-gradient.png) center center repeat-x scroll;
+  background: #cc2034 url(pages-menu-gradient.png) left top repeat-x scroll;
   color: #fff;
   margin-right: 10px;
   font-weight: bold;
   text-decoration: none;
   float: left;
   padding: 0.4em 1em;
-  border: 1px solid #d3100b;
-  border-top: 1px solid #ff1d0d;
-  border-bottom: 1px solid #c50a15;
+  border: 1px solid #d9746c;
+  border-top: 1px solid #cc2034;
+  border-bottom: 1px solid #d9746c;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
 }
 #pages a:hover {
   color: #fff;
+  background-color: #d9746c;
+  background-position: bottom left;
 }
 #site-title {
   float: left;
