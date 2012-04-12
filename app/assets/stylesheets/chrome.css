@@ -55,12 +55,21 @@ button:active {
   font-size: 1.6em;
   line-height: 2.4em;
   margin-bottom: 0;
-  border: 1px solid #3066a2;
   border-radius: 5px;
   -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
            border-radius: 5px;
+}
+#locate_feature {
+  border: 1px solid #3066a2;
   background: #2cbfec url(button-gradient-large.png) center bottom repeat-x scroll;
+}
+#finalize_feature {
+  border: 1px solid #d9746c;
+  border-top: 1px solid #cc2034;
+  border-bottom: 1px solid #d9746c;
+  background: #cc2034 url(pages-menu-gradient.png) left top repeat-x scroll;
+  text-shadow: 1px -1px 0 #991a29;
 }
 
 /* Tables */
