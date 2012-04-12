@@ -39,7 +39,7 @@ $(function() {
     popupAnchor : new L.Point(0,0),
     shadowSize  : new L.Point(0,0) // no shadow
   });
-  
+
   var ZoomedOutIcon = L.Icon.extend({
     iconUrl     : '<%= image_path("marker-dot.png") %>',
     iconSize    : new L.Point(18,18),
@@ -111,6 +111,9 @@ $(function() {
     },
     tileUrl          : 'http://{s}.tile.cloudmade.com/c86f4f94b9394b3690b40366659a988e/3697/256/{z}/{x}/{y}.png',
     tileAttribution  : '&copy; 2012 <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CCBYSA</a>, Imagery <a target="_blank" href="http://cloudmade.com">CloudMade</a>',
+    tileOverlayUrls  : [
+      'http://tilestream-openplans.dotcloud.com/v2/chicago_transit/{z}/{x}/{y}.png'
+    ],
     markerIcon: new MarkerIcon(),
     focusedMarkerIcon: new FocusedMarkerIcon(),
     newMarkerIcon: new NewMarkerIcon(),

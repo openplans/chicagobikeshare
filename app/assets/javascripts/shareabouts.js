@@ -17,6 +17,7 @@ $.widget("ui.shareabout", (function() {
       // Map-related
       tileUrl              : null,
       tileAttribution      : '',
+      tileOverlayUrls      : [],
       initialZoom          : 13,
       markerIcon           : new L.Icon(), //default icon, can be customized
       focusedMarkerIcon    : new L.Icon(), //default icon, can be customized
@@ -67,6 +68,12 @@ $.widget("ui.shareabout", (function() {
       map.addLayer(new L.TileLayer( this.options.tileUrl, {
         maxZoom: this.options.map.maxZoom, attribution: this.options.tileAttribution
       }));
+
+      // Add any overlays
+      $.each(this.options.tileOverlayUrls, function(i, url) {
+        map.addLayer(new L.TileLayer(url));
+      });
+
       map.attributionControl.setPrefix('');
 
       // TODO: What is this doing?
@@ -78,24 +85,24 @@ $.widget("ui.shareabout", (function() {
       map.on('drag', function(drag) {
         self.hint.remove();
       } );
-      
+
       // Icon switching at zoom icon threshold
       this.previousZoom = this.options.initialZoom;
       map.on('zoomend', function(event){
         if (!self.options.zoomedOutIcon) return;
-        
+
         var zoom = map.getZoom();
 
         if ( zoom > self.options.zoomThreshold && self.previousZoom <= self.options.zoomThreshold) {
           for (i in layersOnMap) {
-            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.markerIcon);                      
+            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.markerIcon);
           }
         } else if ( zoom <= self.options.zoomThreshold && self.previousZoom > self.options.zoomThreshold) {
           for (i in layersOnMap) {
-            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.zoomedOutIcon);            
+            if (layersOnMap.hasOwnProperty(i)) layersOnMap[i].setIcon(self.options.zoomedOutIcon);
           }
         }
-        
+
         self.previousZoom = zoom;
       });
 
