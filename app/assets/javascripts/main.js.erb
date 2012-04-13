@@ -149,10 +149,15 @@ $(function() {
 
         // Reset the margin when it won't overlap the scrollbar
         $('.information-panel .close').css('marginRight', '0px');
+
         // Adjust the close button based on the scrollbar
         $('.page').parents('.information-panel.overflowing').find('.close')
           .css('marginRight', window.shareabouts.scrollBarWidth + 'px');
 
+        if (Map.shareabout("smallScreen") ) {
+          // Hide for page content on a small screen
+          $('.page').parents('.information-panel').find('.popup-tip-wrapper').hide();
+        }
       },
       locateNewFeature: function() {
         // Hide mobile dropdown menu if visible
