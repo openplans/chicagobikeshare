@@ -39,10 +39,10 @@ en:
     vote_action: 'Support This!'
     sharing:
       email:
-        subject: 'I suggested a %{thing}'
-        body: 'Check out the %{thing} I suggested: %{url}'
+        subject: 'I suggested a bike share station for Chicago'
+        body: 'Check out this bike share station I suggested: %{url}'
       twitter:
-        status: 'Check out this %{thing}! %{url}.'
+        status: 'I suggested a Chicago bike share station: %{url}.'
   activity:
     vote:
       action: supported
