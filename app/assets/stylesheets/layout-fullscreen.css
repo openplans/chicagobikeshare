@@ -90,6 +90,7 @@ html, body, #wrapper {
   top: 15px;
   right: 5px;
   bottom: 45px;
+  z-index:7;
 }
 .information-panel-content-wrap {
 }
