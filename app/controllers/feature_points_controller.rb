@@ -1,5 +1,6 @@
 class FeaturePointsController < ApplicationController
 
+  before_filter :authenticate_admin!
   before_filter :ignore_feature_location_type_fields_if_empty, :find_or_create_profile, :update_profile, :only => :create  
   before_filter :set_cache_buster, :only => :show # for IE8
   
