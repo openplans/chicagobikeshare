@@ -18,13 +18,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = env['rack.locale'] || I18n.default_locale
   end
   
-  def authenticate_admin!
-    unless current_admin
-      flash[:notice] = "You must be logged in as an admin to access this page"
-      redirect_to new_admin_session_url
-    end
-  end
-  
   def authenticate_user!
     if !current_user
       # This should work, but session is lost. See https://github.com/plataformatec/devise/issues/1357
