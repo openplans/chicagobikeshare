@@ -52,4 +52,6 @@ end
 group :production do
   gem 'libv8', "3.3.10.2"
   gem 'therubyracer'
+  gem 'newrelic_rpm'
+  gem 'ey_config'
 end
