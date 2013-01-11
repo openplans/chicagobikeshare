@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.4'
-gem 'capistrano'
-gem 'capistrano-ext'
+gem 'rails', '3.1.10'
+gem 'capistrano', '= 2.9.0'
+gem 'capistrano-ext', '= 1.2.1'
 
-gem 'devise'
+gem 'devise', '= 1.5.2'
 gem 'cancan'
 gem "omniauth-facebook"
 gem "omniauth-twitter"
@@ -26,7 +26,7 @@ gem 'georuby', :git => 'git://github.com/nofxx/georuby.git'
 gem 'spatial_adapter', :git => 'git://github.com/Empact/spatial_adapter.git'
 
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-gem 'ckeditor'
+gem 'ckeditor', '= 3.6.3'
 
 gem 'workflow'
 gem "paperclip", "~> 2.0"
@@ -51,7 +51,7 @@ end
 
 group :production do
   gem 'libv8', "3.3.10.2"
-  gem 'therubyracer'
+  gem 'therubyracer', "= 0.10"
   gem 'newrelic_rpm'
   gem 'ey_config'
 end
