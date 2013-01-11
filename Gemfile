@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.10'
+gem 'rails', '>= 3.2'
 gem 'capistrano', '= 2.9.0'
 gem 'capistrano-ext', '= 1.2.1'
 
