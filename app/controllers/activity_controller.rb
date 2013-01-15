@@ -10,15 +10,17 @@ class ActivityController < ApplicationController
         else
           ""
         end
-        
+
         @activity_items = ActivityItem.where(where)
           .limit(params[:limit])
           .order('created_at desc')
-        
-        if @activity_items.present?
-          render "index.html"
-        else 
-          render :nothing => true
+
+        self.with_format :html, do
+          if @activity_items.present?
+            render "index.html"
+          else
+            render :nothing => true
+          end
         end
       end
     end
