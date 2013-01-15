@@ -1,5 +1,5 @@
 # FeaturePoint represents a point that is displayed on the map.
-# If there are any Regions, which are created by an Admin uploading a 
+# If there are any Regions, which are created by an Admin uploading a
 # shapefile, points must fall within at least one of those regions to be valid.
 # FeaturePoints can be marked as being not visible in the admin section.
 # When a FeaturePoint is marked as not visible, its associated activity items
@@ -35,7 +35,7 @@ class FeaturePoint < ActiveRecord::Base
   after_create :create_vote
   after_initialize :set_defaults
   after_update :maybe_remove_activity_items
-  
+
   accepts_nested_attributes_for :profile
 
   validates :the_geom,  :presence => true
@@ -47,17 +47,17 @@ class FeaturePoint < ActiveRecord::Base
       corners[0][0], corners[0][1], corners[1][0], corners[0][1], corners[1][0], corners[1][1], corners[0][0], corners[1][1], corners[0][0], corners[0][1]]
     )
   end
-  
+
   def location_types_to_s
     types = location_types.map(&:name)
     types[-1] = "and #{types[-1]}" unless types.length < 2
     types.join(", ")
   end
-  
-  def journey
-    t = Journey.arel_table
 
-    Journey.where(
+  def journey
+    t = Shareabouts::Journey.arel_table
+
+    Shareabouts::Journey.where(
       t[:start_id].eq(id).or(t[:end_id].eq(id))
     ).first
   end
@@ -89,15 +89,15 @@ class FeaturePoint < ActiveRecord::Base
     return submitter_name if submitter_name.present?
     return User.model_name.human.capitalize
   end
-  
+
   def region
     regions.find(&:default?) || regions.first
   end
-  
+
   def support_count
     votes.count
   end
-  
+
   def as_json
     { :id => id, :lat => latitude, :lon => longitude, :pop => support_count }
   end
@@ -130,7 +130,7 @@ class FeaturePoint < ActiveRecord::Base
   end
 
   private
-  
+
   def create_vote
     votes.create :profile => profile
   end
@@ -139,10 +139,10 @@ class FeaturePoint < ActiveRecord::Base
     return unless new_record?
     self.visible = true
   end
-  
+
   def maybe_remove_activity_items
     return if self.visible?
-    
+
     self.activity_items.delete_all
     self.children_activity_items.delete_all
   end
