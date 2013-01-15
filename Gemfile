@@ -37,8 +37,9 @@ gem 'json'
 
 gem 'rake', '>=0.9.2'
 
+gem 'uglifier', '>= 1.0.3'
+
 group :assets do
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
